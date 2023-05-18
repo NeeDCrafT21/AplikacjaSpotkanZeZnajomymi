@@ -1,7 +1,5 @@
 package org.example;
 
-import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
-
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.*;
@@ -9,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Arrays;
 
 public class MarkerPanel extends JPanel implements ActionListener {
 
