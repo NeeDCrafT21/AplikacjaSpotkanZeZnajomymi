@@ -16,7 +16,7 @@ public class MenuPanel extends JPanel implements ActionListener {
     private JButton closeButton;
     public JButton backButton;
 
-    MenuPanel(OSMMap map,  MarkerPanel markerPanel) {
+    MenuPanel(OSMMap map, MarkerPanel markerPanel) {
         this.markerPanel = markerPanel;
 
         savedMarkersPanel = new SavedMarkersPanel(map, markerPanel, this);

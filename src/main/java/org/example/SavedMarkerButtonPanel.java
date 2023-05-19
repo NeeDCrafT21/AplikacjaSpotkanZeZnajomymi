@@ -9,7 +9,7 @@ public class SavedMarkerButtonPanel extends JPanel implements MouseListener {
     MarkerPanel markerPanel;
     MenuPanel menuPanel;
     ExpMapMarker marker;
-    public SavedMarkerButtonPanel( MarkerPanel markerPanel, MenuPanel menu, ExpMapMarker marker) {
+    public SavedMarkerButtonPanel(MarkerPanel markerPanel, MenuPanel menu, ExpMapMarker marker) {
         this.markerPanel = markerPanel;
         this.menuPanel = menu;
         this.marker = marker;

@@ -1,5 +1,8 @@
 package org.example;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,14 +16,20 @@ public class MainFrame extends JFrame implements ActionListener {
     MarkerPanel markerPanel;
     MenuPanel menuPanel;
     MapPanel mapPanel;
+    AddedFriendPanel addedFriendPanel;
+    AddFriendPanel addFriendPanel;
     FriendsPanel friendsPanel;
 
-    MainFrame() {
+    MainFrame() throws IOException {
+        List<AddedFriend> addedFriends = new ArrayList<AddedFriend>();
+        addedFriends.add(new AddedFriend("Piotr Czaaaarnecki"));
 
         markerPanel = new MarkerPanel();
         menuPanel = new MenuPanel(map, markerPanel);
         mapPanel = new MapPanel(map, markerPanel, menuPanel);
-        friendsPanel = new FriendsPanel();
+        addedFriendPanel = new AddedFriendPanel();
+        addFriendPanel = new AddFriendPanel(addedFriendPanel, addedFriends);
+        friendsPanel = new FriendsPanel(addedFriendPanel, addFriendPanel, addedFriends);
 
         ImageIcon MFLogoImage = new ImageIcon("munefrakt_logo.png");
         JLabel MFLogo = new JLabel();
@@ -63,7 +72,9 @@ public class MainFrame extends JFrame implements ActionListener {
         layeredMainPane.add(friendsButton, JLayeredPane.PALETTE_LAYER);
         layeredMainPane.add(MFLogo, JLayeredPane.PALETTE_LAYER);
         layeredMainPane.add(menuPanel, JLayeredPane.POPUP_LAYER);
+        layeredMainPane.add(addedFriendPanel, JLayeredPane.POPUP_LAYER);
         layeredMainPane.add(friendsPanel, JLayeredPane.POPUP_LAYER);
+        layeredMainPane.add(addFriendPanel, JLayeredPane.POPUP_LAYER);
 
         this.setVisible(true);
     }
@@ -77,6 +88,7 @@ public class MainFrame extends JFrame implements ActionListener {
         }
         else if(e.getSource() == friendsButton) {
             friendsPanel.setVisible(true);
+            friendsPanel.addedFriendsScrollPane.updateShowAddedFriends();
 
             System.out.println("friends");
         }

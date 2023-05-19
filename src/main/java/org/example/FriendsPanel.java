@@ -6,13 +6,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 public class FriendsPanel extends JPanel implements ActionListener {
-
+    AddedFriendPanel addedFriendPanel;
+    AddFriendPanel addFriendPanel;
+    List<AddedFriend> addedFriends;
+    AddedFriendsScrollPane addedFriendsScrollPane;
     private JButton closeButton;
     private JButton addFriendButton;
 
-    FriendsPanel() {
+    FriendsPanel(AddedFriendPanel addedFriendPanel, AddFriendPanel addFriendPanel, List<AddedFriend> addedFriends) {
+        this.addedFriendPanel = addedFriendPanel;
+        this.addFriendPanel = addFriendPanel;
+        this.addedFriends = addedFriends;
 
         ImageIcon closeIcon = new ImageIcon("close_icon.png");
         closeButton = new JButton();
@@ -28,6 +35,8 @@ public class FriendsPanel extends JPanel implements ActionListener {
         addFriendButton.setFocusable(false);
         addFriendButton.addActionListener(this);
 
+        addedFriendsScrollPane = new AddedFriendsScrollPane(this, addedFriendPanel, addedFriends);
+
         this.setBackground(Color.WHITE);
         this.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
         this.setBounds(1050, 10, 200, 600);
@@ -35,6 +44,7 @@ public class FriendsPanel extends JPanel implements ActionListener {
 
         this.add(closeButton);
         this.add(addFriendButton);
+        this.add(addedFriendsScrollPane);
 
         this.setVisible(false);
 
@@ -51,6 +61,10 @@ public class FriendsPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == closeButton) {
             this.setVisible(false);
+        }
+        if(e.getSource() == addFriendButton) {
+            this.setVisible(false);
+            addFriendPanel.setVisible(true);
         }
     }
 }
