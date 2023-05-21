@@ -5,18 +5,15 @@ import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.List;
-import java.util.Objects;
 
-public class AddedFriendPanel extends JPanel implements ActionListener {
+public class FriendPanel extends JPanel implements ActionListener {
     private JButton closeButton;
     JLabel titleLabel;
     private JTextArea descriptionTextArea;
     ImageIcon profilePicture;
     JLabel profilePictureLabel;
 
-    public AddedFriendPanel() {
+    public FriendPanel() {
         ImageIcon closeIcon = new ImageIcon("close_icon.png");
         closeButton = new JButton();
         closeButton.setBounds(10, 10, 30, 30);
@@ -58,10 +55,10 @@ public class AddedFriendPanel extends JPanel implements ActionListener {
         this.add(profilePictureLabel);
     }
 
-    public void setupFriendInfo(AddedFriend addedFriend) {
-        titleLabel.setText(addedFriend.getName());
-        descriptionTextArea.setText(addedFriend.getDescription());
-        profilePicture = new ImageIcon(addedFriend.getProfilePicture().getScaledInstance(140, 140, Image.SCALE_DEFAULT));
+    public void setupFriendInfo(Friend friend) {
+        titleLabel.setText(friend.getName());
+        descriptionTextArea.setText(friend.getDescription());
+        profilePicture = new ImageIcon(friend.getProfilePicture().getScaledInstance(140, 140, Image.SCALE_DEFAULT));
         profilePictureLabel.setIcon(profilePicture);
         this.setVisible(true);
     }

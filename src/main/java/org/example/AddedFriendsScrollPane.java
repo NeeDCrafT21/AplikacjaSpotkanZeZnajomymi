@@ -6,13 +6,13 @@ import java.util.List;
 
 public class AddedFriendsScrollPane extends JScrollPane {
     FriendsPanel friendsPanel;
-    AddedFriendPanel addedFriendPanel;
-    List<AddedFriend> addedFriends;
+    FriendPanel friendPanel;
+    List<Friend> friends;
     JPanel addedFriendsPanel;
-    public AddedFriendsScrollPane(FriendsPanel friendsPanel, AddedFriendPanel addedFriendPanel, List<AddedFriend> addedFriends) {
+    public AddedFriendsScrollPane(FriendsPanel friendsPanel, FriendPanel friendPanel, List<Friend> friends) {
         this.friendsPanel = friendsPanel;
-        this.addedFriendPanel = addedFriendPanel;
-        this.addedFriends = addedFriends;
+        this.friendPanel = friendPanel;
+        this.friends = friends;
 
         addedFriendsPanel = new JPanel();
         addedFriendsPanel.setLayout(new BoxLayout(addedFriendsPanel, BoxLayout.Y_AXIS));
@@ -28,8 +28,8 @@ public class AddedFriendsScrollPane extends JScrollPane {
     }
 
     private void showAddedFriends() {
-        for(AddedFriend friend: addedFriends) {
-            AddedFriendButtonPanel friendButton = new AddedFriendButtonPanel(friendsPanel, addedFriendPanel, friend);
+        for(Friend friend: friends) {
+            AddedFriendButtonPanel friendButton = new AddedFriendButtonPanel(friendsPanel, friendPanel, friend);
             addedFriendsPanel.add(friendButton);
             addedFriendsPanel.add(Box.createRigidArea(new Dimension(0, 5)));
         }

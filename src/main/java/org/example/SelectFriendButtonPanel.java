@@ -6,13 +6,13 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class AddedFriendButtonPanel extends JPanel implements MouseListener {
-    FriendsPanel friendsPanel;
-    FriendPanel friendPanel;
+public class SelectFriendButtonPanel extends JPanel implements MouseListener {
+    CreateMeetingSelectFriendsScrollPane createMeetingSelectFriendsScrollPane;
     Friend friend;
-    public AddedFriendButtonPanel(FriendsPanel friendsPanel, FriendPanel friendPanel, Friend friend) {
-        this.friendPanel = friendPanel;
-        this.friendsPanel = friendsPanel;
+    Boolean isSelected = false;
+
+    public SelectFriendButtonPanel(CreateMeetingSelectFriendsScrollPane createMeetingSelectFriendsScrollPane, Friend friend) {
+        this.createMeetingSelectFriendsScrollPane = createMeetingSelectFriendsScrollPane;
         this.friend = friend;
 
         JTextArea nameLabel = new JTextArea(friend.getName());
@@ -40,9 +40,16 @@ public class AddedFriendButtonPanel extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        friendsPanel.setVisible(false);
-        friendPanel.setupFriendInfo(friend);
-        friendPanel.setVisible(true);
+        if(isSelected) {
+            this.setBackground(UIManager.getColor ( "Panel.background" ));
+            createMeetingSelectFriendsScrollPane.removeFriendFromList(friend);
+            isSelected = false;
+        }
+        else {
+            this.setBackground(Color.GREEN);
+            createMeetingSelectFriendsScrollPane.addFriendToList(friend);
+            isSelected = true;
+        }
     }
 
     @Override

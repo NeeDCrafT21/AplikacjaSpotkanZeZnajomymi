@@ -11,25 +11,28 @@ public class MainFrame extends JFrame implements ActionListener {
 
     JButton menuButton;
     JButton friendsButton;
-
     OSMMap map = new OSMMap();
     MarkerPanel markerPanel;
     MenuPanel menuPanel;
     MapPanel mapPanel;
-    AddedFriendPanel addedFriendPanel;
+    FriendPanel friendPanel;
     AddFriendPanel addFriendPanel;
     FriendsPanel friendsPanel;
+    CreateMeetingPanel createMeetingPanel;
 
     MainFrame() throws IOException {
-        List<AddedFriend> addedFriends = new ArrayList<AddedFriend>();
-        addedFriends.add(new AddedFriend("Piotr Czaaaarnecki"));
+        List<Friend> friends = new ArrayList<>();
+        friends.add(new Friend("Grzegorz Brzeczyszczykiewicz"));
 
+        List<Meeting> meetings = new ArrayList<>();
+
+        createMeetingPanel = new CreateMeetingPanel(map, friends, meetings);
         markerPanel = new MarkerPanel();
-        menuPanel = new MenuPanel(map, markerPanel);
+        menuPanel = new MenuPanel(map, markerPanel, createMeetingPanel);
         mapPanel = new MapPanel(map, markerPanel, menuPanel);
-        addedFriendPanel = new AddedFriendPanel();
-        addFriendPanel = new AddFriendPanel(addedFriendPanel, addedFriends);
-        friendsPanel = new FriendsPanel(addedFriendPanel, addFriendPanel, addedFriends);
+        friendPanel = new FriendPanel();
+        addFriendPanel = new AddFriendPanel(friendPanel, friends);
+        friendsPanel = new FriendsPanel(friendPanel, addFriendPanel, friends);
 
         ImageIcon MFLogoImage = new ImageIcon("munefrakt_logo.png");
         JLabel MFLogo = new JLabel();
@@ -72,9 +75,10 @@ public class MainFrame extends JFrame implements ActionListener {
         layeredMainPane.add(friendsButton, JLayeredPane.PALETTE_LAYER);
         layeredMainPane.add(MFLogo, JLayeredPane.PALETTE_LAYER);
         layeredMainPane.add(menuPanel, JLayeredPane.POPUP_LAYER);
-        layeredMainPane.add(addedFriendPanel, JLayeredPane.POPUP_LAYER);
+        layeredMainPane.add(friendPanel, JLayeredPane.POPUP_LAYER);
         layeredMainPane.add(friendsPanel, JLayeredPane.POPUP_LAYER);
         layeredMainPane.add(addFriendPanel, JLayeredPane.POPUP_LAYER);
+        layeredMainPane.add(createMeetingPanel, JLayeredPane.POPUP_LAYER);
 
         this.setVisible(true);
     }

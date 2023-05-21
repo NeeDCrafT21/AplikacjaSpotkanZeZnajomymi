@@ -16,11 +16,11 @@ public class AddFriendPanel extends JPanel implements ActionListener {
     private JButton addFriendButton;
     private JTextField nameTextField;
     private JTextArea descriptionTextArea;
-    AddedFriendPanel addedFriendPanel;
-    List<AddedFriend> addedFriends;
-    public AddFriendPanel(AddedFriendPanel addedFriendPanel, List<AddedFriend> addedFriends) {
-        this.addedFriendPanel = addedFriendPanel;
-        this.addedFriends = addedFriends;
+    FriendPanel friendPanel;
+    List<Friend> friends;
+    public AddFriendPanel(FriendPanel friendPanel, List<Friend> friends) {
+        this.friendPanel = friendPanel;
+        this.friends = friends;
 
         ImageIcon closeIcon = new ImageIcon("close_icon.png");
         closeButton = new JButton();
@@ -90,13 +90,13 @@ public class AddFriendPanel extends JPanel implements ActionListener {
         }
         else if (e.getSource() == addFriendButton && !Objects.equals(nameTextField.getText(), "")) {
             try {
-                AddedFriend newFriend = new AddedFriend(nameTextField.getText());
+                Friend newFriend = new Friend(nameTextField.getText());
                 newFriend.setDescription(descriptionTextArea.getText());
-                addedFriends.add(newFriend);
+                friends.add(newFriend);
                 this.setVisible(false);
                 nameTextField.setText("");
                 descriptionTextArea.setText("");
-                addedFriendPanel.setupFriendInfo(newFriend);
+                friendPanel.setupFriendInfo(newFriend);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }

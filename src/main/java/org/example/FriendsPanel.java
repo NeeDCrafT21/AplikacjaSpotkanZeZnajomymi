@@ -9,17 +9,17 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 
 public class FriendsPanel extends JPanel implements ActionListener {
-    AddedFriendPanel addedFriendPanel;
+    FriendPanel friendPanel;
     AddFriendPanel addFriendPanel;
-    List<AddedFriend> addedFriends;
+    List<Friend> friends;
     AddedFriendsScrollPane addedFriendsScrollPane;
     private JButton closeButton;
     private JButton addFriendButton;
 
-    FriendsPanel(AddedFriendPanel addedFriendPanel, AddFriendPanel addFriendPanel, List<AddedFriend> addedFriends) {
-        this.addedFriendPanel = addedFriendPanel;
+    FriendsPanel(FriendPanel friendPanel, AddFriendPanel addFriendPanel, List<Friend> friends) {
+        this.friendPanel = friendPanel;
         this.addFriendPanel = addFriendPanel;
-        this.addedFriends = addedFriends;
+        this.friends = friends;
 
         ImageIcon closeIcon = new ImageIcon("close_icon.png");
         closeButton = new JButton();
@@ -35,7 +35,7 @@ public class FriendsPanel extends JPanel implements ActionListener {
         addFriendButton.setFocusable(false);
         addFriendButton.addActionListener(this);
 
-        addedFriendsScrollPane = new AddedFriendsScrollPane(this, addedFriendPanel, addedFriends);
+        addedFriendsScrollPane = new AddedFriendsScrollPane(this, friendPanel, friends);
 
         this.setBackground(Color.WHITE);
         this.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));

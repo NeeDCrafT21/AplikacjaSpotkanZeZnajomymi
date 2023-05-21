@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 
 public class MenuPanel extends JPanel implements ActionListener {
     MarkerPanel markerPanel;
+    CreateMeetingPanel createMeetingPanel;
     SavedMarkersPanel savedMarkersPanel;
     JScrollPane savedMarkersScrollPane;
     MenuButtonPanel menuButtonPanel;
@@ -16,8 +17,9 @@ public class MenuPanel extends JPanel implements ActionListener {
     private JButton closeButton;
     public JButton backButton;
 
-    MenuPanel(OSMMap map, MarkerPanel markerPanel) {
+    MenuPanel(OSMMap map, MarkerPanel markerPanel, CreateMeetingPanel createMeetingPanel) {
         this.markerPanel = markerPanel;
+        this.createMeetingPanel = createMeetingPanel;
 
         savedMarkersPanel = new SavedMarkersPanel(map, markerPanel, this);
         savedMarkersScrollPane = new JScrollPane(savedMarkersPanel);
@@ -30,7 +32,6 @@ public class MenuPanel extends JPanel implements ActionListener {
 //        layeredMenuPane.setBounds(0, 0, 300, 655);
 
         ImageIcon closeIcon = new ImageIcon("close_icon.png");
-
         closeButton = new JButton();
         closeButton.setBounds(260, 10,30, 30);
         closeButton.setIcon(closeIcon);
@@ -38,7 +39,6 @@ public class MenuPanel extends JPanel implements ActionListener {
         closeButton.addActionListener(this);
 
         ImageIcon backIcon = new ImageIcon("back_icon.png");
-
         backButton = new JButton();
         backButton.setBounds(225, 10,30, 30);
         backButton.setIcon(backIcon);
@@ -46,7 +46,7 @@ public class MenuPanel extends JPanel implements ActionListener {
         backButton.addActionListener(this);
         backButton.setVisible(false);
 
-        menuButtonPanel = new MenuButtonPanel(this);
+        menuButtonPanel = new MenuButtonPanel(this, createMeetingPanel);
 
 //        this.add(layeredMenuPane);
         this.setBackground(Color.WHITE);

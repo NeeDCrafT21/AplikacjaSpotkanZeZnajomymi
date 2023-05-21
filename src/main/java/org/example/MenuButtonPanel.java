@@ -7,11 +7,13 @@ import java.awt.event.ActionListener;
 
 public class MenuButtonPanel extends JPanel implements ActionListener {
     MenuPanel menuPanel;
+    CreateMeetingPanel createMeetingPanel;
     private JButton openSavedMarkersButton;
     private JButton createMeetingButton;
     private JButton showMeetingsButton;
-    public MenuButtonPanel(MenuPanel menuPanel) {
+    public MenuButtonPanel(MenuPanel menuPanel, CreateMeetingPanel createMeetingPanel) {
         this.menuPanel = menuPanel;
+        this.createMeetingPanel = createMeetingPanel;
 
         openSavedMarkersButton = new JButton("Saved markers");
         openSavedMarkersButton.setMaximumSize(new Dimension(260, 50));
@@ -31,6 +33,7 @@ public class MenuButtonPanel extends JPanel implements ActionListener {
         this.setBounds(20, 250,260, 200);
         this.setBackground(Color.WHITE);
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+
         this.add(openSavedMarkersButton);
         this.add(Box.createRigidArea(new Dimension(0, 10)));
         this.add(createMeetingButton);
@@ -48,6 +51,11 @@ public class MenuButtonPanel extends JPanel implements ActionListener {
             //menuPanel.savedMarkersScrollPane.setViewportView(menuPanel.savedMarkersPanel);
             menuPanel.savedMarkersScrollPane.setVisible(true);
             System.out.println("Saved markers");
+        }
+        else if(e.getSource() == createMeetingButton) {
+            menuPanel.setVisible(false);
+            createMeetingPanel.clearPanelInfo();
+            createMeetingPanel.setVisible(true);
         }
     }
 }
