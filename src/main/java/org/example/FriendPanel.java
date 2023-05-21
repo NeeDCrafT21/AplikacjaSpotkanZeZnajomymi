@@ -34,7 +34,7 @@ public class FriendPanel extends JPanel implements ActionListener {
         descriptionTextArea = new JTextArea(5, 5);
         descriptionTextArea.setFont(new Font(null, Font.PLAIN, 15));
         descriptionTextArea.setLineWrap(true);
-        descriptionTextArea.setEditable(false);
+//        descriptionTextArea.setEditable(false);
 
         JScrollPane descriptionPane = new JScrollPane(descriptionTextArea);
         descriptionPane.setBounds(20, 95, 200, 180);

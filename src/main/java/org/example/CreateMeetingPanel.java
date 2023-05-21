@@ -6,11 +6,15 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -61,6 +65,7 @@ public class CreateMeetingPanel extends JPanel implements ActionListener {
         datePicker = new JDatePickerImpl(datePanel, new DateComponentFormatter());
         datePicker.setBounds(440, 335, 160, 26);
         datePicker.setFont(new Font(null, Font.PLAIN, 20));
+        datePicker.addActionListener(this);
 
         JLabel timeLabel = new JLabel();
         timeLabel.setText("Meeting time:");
@@ -125,13 +130,23 @@ public class CreateMeetingPanel extends JPanel implements ActionListener {
             this.setVisible(false);
         }
         else if(e.getSource() == createButton) {
-            Date newMeetingDate = (Date) datePicker.getModel().getValue();
-            LocalTime newMeetingTime = LocalTime.parse(hourComboBox.getSelectedItem() +":"+minutesComboBox.getSelectedItem());
-            Meeting newMeeting = new Meeting(selectedFriends, selectedPlace, newMeetingDate, newMeetingTime);
-            meetings.add(newMeeting);
-            newMeeting.printMeetingInfo();
-            clearPanelInfo();
-            this.setVisible(false);
+            Date meetingDate = (Date) datePicker.getModel().getValue();
+            Date todaysDate = new Date();
+            todaysDate.setHours(0);
+            todaysDate.setMinutes(0);
+            if(meetingDate.before(todaysDate)) {
+                System.out.println("Wybierz date pozniejsza niz dzisiejsza");
+                datePicker.getModel().setValue(null);
+            }
+            else {
+                Date newMeetingDate = (Date) datePicker.getModel().getValue();
+                LocalTime newMeetingTime = LocalTime.parse(hourComboBox.getSelectedItem() +":"+minutesComboBox.getSelectedItem());
+                Meeting newMeeting = new Meeting(selectedFriends, selectedPlace, newMeetingDate, newMeetingTime);
+                meetings.add(newMeeting);
+                newMeeting.printMeetingInfo();
+                clearPanelInfo();
+                this.setVisible(false);
+            }
         }
     }
 
@@ -147,4 +162,5 @@ public class CreateMeetingPanel extends JPanel implements ActionListener {
     public void setSelectedPlace(ExpMapMarker selectedPlace) {
         this.selectedPlace = selectedPlace;
     }
+
 }
