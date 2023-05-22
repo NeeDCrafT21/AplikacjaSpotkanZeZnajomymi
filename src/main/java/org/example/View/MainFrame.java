@@ -5,12 +5,10 @@ import org.example.Model.Friend;
 import org.example.Model.Meeting;
 import org.example.Model.OSMMap;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MainFrame extends JFrame {
 

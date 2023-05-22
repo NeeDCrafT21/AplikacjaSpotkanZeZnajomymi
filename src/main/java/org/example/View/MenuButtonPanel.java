@@ -6,29 +6,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MenuButtonPanel extends JPanel implements ActionListener {
-    MenuPanel menuPanel;
-    CreateMeetingPanel createMeetingPanel;
-    private JButton openSavedMarkersButton;
-    private JButton createMeetingButton;
-    private JButton showMeetingsButton;
+    private final MenuPanel menuPanel;
+    private final CreateMeetingPanel createMeetingPanel;
+    private final JButton openSavedMarkersButton;
+    private final JButton createMeetingButton;
+    private final JButton showMeetingsButton;
+
     public MenuButtonPanel(MenuPanel menuPanel, CreateMeetingPanel createMeetingPanel) {
         this.menuPanel = menuPanel;
         this.createMeetingPanel = createMeetingPanel;
 
-        openSavedMarkersButton = new JButton("Saved markers");
-        openSavedMarkersButton.setMaximumSize(new Dimension(260, 50));
-        openSavedMarkersButton.setFocusable(false);
-        openSavedMarkersButton.addActionListener(this);
-
-        createMeetingButton = new JButton("Create meeting");
-        createMeetingButton.setMaximumSize(new Dimension(260, 50));
-        createMeetingButton.setFocusable(false);
-        createMeetingButton.addActionListener(this);
-
-        showMeetingsButton = new JButton("My meetings");
-        showMeetingsButton.setMaximumSize(new Dimension(260, 50));
-        showMeetingsButton.setFocusable(false);
-        showMeetingsButton.addActionListener(this);
+        openSavedMarkersButton = initButton("Save markers");
+        createMeetingButton = initButton("Create meeting");
+        showMeetingsButton = initButton("My meetings");
 
         this.setBounds(20, 250,260, 200);
         this.setBackground(Color.WHITE);
@@ -40,6 +30,14 @@ public class MenuButtonPanel extends JPanel implements ActionListener {
         this.add(Box.createRigidArea(new Dimension(0, 10)));
         this.add(showMeetingsButton);
         this.add(Box.createRigidArea(new Dimension(0, 10)));
+    }
+
+    public JButton initButton(String buttonText) {
+        JButton jButton = new JButton(buttonText);
+        jButton.setMaximumSize(new Dimension(260, 50));
+        jButton.setFocusable(false);
+        jButton.addActionListener(this);
+        return jButton;
     }
 
     @Override
