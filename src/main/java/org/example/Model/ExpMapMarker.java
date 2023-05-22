@@ -1,4 +1,4 @@
-package org.example;
+package org.example.Model;
 
 import org.openstreetmap.gui.jmapviewer.Coordinate;
 import org.openstreetmap.gui.jmapviewer.MapMarkerDot;

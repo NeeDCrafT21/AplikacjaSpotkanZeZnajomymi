@@ -1,20 +1,20 @@
-package org.example;
+package org.example.View;
 
+import org.example.Model.ExpMapMarker;
+import org.example.Model.Friend;
+import org.example.Model.Meeting;
+import org.example.Model.OSMMap;
 import org.jdatepicker.impl.DateComponentFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -134,7 +134,10 @@ public class CreateMeetingPanel extends JPanel implements ActionListener {
             Date todaysDate = new Date();
             todaysDate.setHours(0);
             todaysDate.setMinutes(0);
-            if(meetingDate.before(todaysDate)) {
+            if(selectedFriends.isEmpty() || selectedPlace == null) {
+                System.out.println("Niepoprawne dane");
+            }
+            else if(meetingDate == null || meetingDate.before(todaysDate)) {
                 System.out.println("Wybierz date pozniejsza niz dzisiejsza");
                 datePicker.getModel().setValue(null);
             }

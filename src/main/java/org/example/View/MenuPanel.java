@@ -1,4 +1,7 @@
-package org.example;
+package org.example.View;
+
+import org.example.Model.Meeting;
+import org.example.Model.OSMMap;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,30 +9,28 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 public class MenuPanel extends JPanel implements ActionListener {
     MarkerPanel markerPanel;
     CreateMeetingPanel createMeetingPanel;
-    SavedMarkersPanel savedMarkersPanel;
-    JScrollPane savedMarkersScrollPane;
+    List<Meeting> meetings;
+
+    SavedMarkersScrollPane savedMarkersScrollPane;
+    AllMeetingsScrollPane allMeetingsScrollPane;
     MenuButtonPanel menuButtonPanel;
 
     private JButton closeButton;
     public JButton backButton;
 
-    MenuPanel(OSMMap map, MarkerPanel markerPanel, CreateMeetingPanel createMeetingPanel) {
+    public MenuPanel(OSMMap map, MarkerPanel markerPanel, CreateMeetingPanel createMeetingPanel, List<Meeting> meetings) {
         this.markerPanel = markerPanel;
         this.createMeetingPanel = createMeetingPanel;
+        this.meetings = meetings;
 
-        savedMarkersPanel = new SavedMarkersPanel(map, markerPanel, this);
-        savedMarkersScrollPane = new JScrollPane(savedMarkersPanel);
-        savedMarkersScrollPane.setBounds(10, 90, 280, 555);
-        savedMarkersScrollPane.setBorder(null);
-        savedMarkersScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        savedMarkersScrollPane.setVisible(false);
+        savedMarkersScrollPane = new SavedMarkersScrollPane(map, markerPanel, this);
 
-//        JLayeredPane layeredMenuPane = new JLayeredPane();
-//        layeredMenuPane.setBounds(0, 0, 300, 655);
+        allMeetingsScrollPane = new AllMeetingsScrollPane(meetings);
 
         ImageIcon closeIcon = new ImageIcon("close_icon.png");
         closeButton = new JButton();
@@ -63,6 +64,7 @@ public class MenuPanel extends JPanel implements ActionListener {
         this.add(backButton);
         this.add(menuButtonPanel);
         this.add(savedMarkersScrollPane);
+        this.add(allMeetingsScrollPane);
 
         this.setVisible(false);
 
@@ -78,11 +80,16 @@ public class MenuPanel extends JPanel implements ActionListener {
     public void openPanel() {
         this.setVisible(true);
         savedMarkersScrollPane.setVisible(false);
+        allMeetingsScrollPane.setVisible(false);
         menuButtonPanel.setVisible(true);
     }
 
     public void closePanel() {
         this.setVisible(false);
+    }
+
+    public SavedMarkersScrollPane getSavedMarkersScrollPane() {
+        return savedMarkersScrollPane;
     }
 
     @Override
@@ -94,6 +101,11 @@ public class MenuPanel extends JPanel implements ActionListener {
             if(savedMarkersScrollPane.isVisible()) {
                 backButton.setVisible(false);
                 savedMarkersScrollPane.setVisible(false);
+                menuButtonPanel.setVisible(true);
+            }
+            else if(allMeetingsScrollPane.isVisible()) {
+                backButton.setVisible(false);
+                allMeetingsScrollPane.setVisible(false);
                 menuButtonPanel.setVisible(true);
             }
 

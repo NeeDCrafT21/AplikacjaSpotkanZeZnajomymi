@@ -1,5 +1,6 @@
-package org.example;
+package org.example.View;
 
+import org.example.Model.ExpMapMarker;
 import org.openstreetmap.gui.jmapviewer.interfaces.MapMarker;
 
 import javax.swing.*;

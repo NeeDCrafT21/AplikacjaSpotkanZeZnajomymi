@@ -1,4 +1,9 @@
-package org.example;
+package org.example.View;
+
+import org.example.Controller.MainFrameController;
+import org.example.Model.Friend;
+import org.example.Model.Meeting;
+import org.example.Model.OSMMap;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -7,20 +12,24 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainFrame extends JFrame implements ActionListener {
+public class MainFrame extends JFrame {
 
-    JButton menuButton;
-    JButton friendsButton;
-    OSMMap map = new OSMMap();
-    MarkerPanel markerPanel;
-    MenuPanel menuPanel;
-    MapPanel mapPanel;
-    FriendPanel friendPanel;
-    AddFriendPanel addFriendPanel;
-    FriendsPanel friendsPanel;
-    CreateMeetingPanel createMeetingPanel;
+    MainFrameController controller;
 
-    MainFrame() throws IOException {
+    private JButton menuButton;
+
+    private JButton friendsButton;
+    private OSMMap map = new OSMMap();
+    private MarkerPanel markerPanel;
+    private MenuPanel menuPanel;
+    private MapPanel mapPanel;
+    private FriendPanel friendPanel;
+    private AddFriendPanel addFriendPanel;
+    private FriendsPanel friendsPanel;
+    private CreateMeetingPanel createMeetingPanel;
+
+    public MainFrame() throws IOException {
+        controller = new MainFrameController(this);
         List<Friend> friends = new ArrayList<>();
         friends.add(new Friend("Grzegorz Brzeczyszczykiewicz"));
 
@@ -28,7 +37,7 @@ public class MainFrame extends JFrame implements ActionListener {
 
         createMeetingPanel = new CreateMeetingPanel(map, friends, meetings);
         markerPanel = new MarkerPanel();
-        menuPanel = new MenuPanel(map, markerPanel, createMeetingPanel);
+        menuPanel = new MenuPanel(map, markerPanel, createMeetingPanel, meetings);
         mapPanel = new MapPanel(map, markerPanel, menuPanel);
         friendPanel = new FriendPanel();
         addFriendPanel = new AddFriendPanel(friendPanel, friends);
@@ -51,13 +60,13 @@ public class MainFrame extends JFrame implements ActionListener {
         menuButton.setBounds(20, 20,50, 50);
         menuButton.setIcon(menuIcon);
         menuButton.setFocusable(false);
-        menuButton.addActionListener(this);
+        menuButton.addActionListener(controller);
 
         friendsButton = new JButton();
         friendsButton.setBounds(1195, 20,50, 50);
         friendsButton.setIcon(friendsIcon);
         friendsButton.setFocusable(false);
-        friendsButton.addActionListener(this);
+        friendsButton.addActionListener(controller);
 
         ImageIcon appIcon = new ImageIcon("grupa_badawcza.png");
         this.setIconImage(appIcon.getImage());
@@ -83,21 +92,24 @@ public class MainFrame extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == menuButton) {
-            menuPanel.openPanel();
 
-            System.out.println("menu");
-        }
-        else if(e.getSource() == friendsButton) {
-            friendsPanel.setVisible(true);
-            friendsPanel.addedFriendsScrollPane.updateShowAddedFriends();
+//    public void actionPerformed(ActionEvent e) {
+//        controller.actionPerformed(e);
+//    }
 
-            System.out.println("friends");
-        }
-        else if(e.getSource() == menuPanel.savedMarkersPanel.clickedButton) {
-            System.out.println("MainFrame: " + menuPanel.savedMarkersPanel.clickedButton.getText());
-        }
+    public JButton getMenuButton() {
+        return menuButton;
+    }
+
+    public MenuPanel getMenuPanel() {
+        return menuPanel;
+    }
+
+    public FriendsPanel getFriendsPanel() {
+        return friendsPanel;
+    }
+
+    public JButton getFriendsButton() {
+        return friendsButton;
     }
 }

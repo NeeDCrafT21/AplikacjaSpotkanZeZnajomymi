@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.View.MainFrame;
+
 import java.io.IOException;
 
 public class Main {

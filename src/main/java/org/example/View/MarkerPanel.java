@@ -1,4 +1,6 @@
-package org.example;
+package org.example.View;
+
+import org.example.Model.ExpMapMarker;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -14,7 +16,7 @@ public class MarkerPanel extends JPanel implements ActionListener {
     private JTextArea descriptionTextArea;
     JLabel nameLabel;
 
-    MarkerPanel() {
+    public MarkerPanel() {
         ImageIcon closeIcon = new ImageIcon("close_icon.png");
 
         closeMenuButton = new JButton();

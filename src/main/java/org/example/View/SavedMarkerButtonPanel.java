@@ -1,4 +1,6 @@
-package org.example;
+package org.example.View;
+
+import org.example.Model.ExpMapMarker;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;

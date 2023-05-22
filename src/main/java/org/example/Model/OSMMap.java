@@ -1,4 +1,4 @@
-package org.example;
+package org.example.Model;
 
 import org.openstreetmap.gui.jmapviewer.Coordinate;
 import org.openstreetmap.gui.jmapviewer.JMapViewer;
@@ -11,7 +11,7 @@ public class OSMMap extends JMapViewer implements MouseWheelListener {
 
     ExpMapMarker marker;
 
-    OSMMap() {
+    public OSMMap() {
         ICoordinate position = new Coordinate(52.23, 21.0);
         this.setDisplayPosition(position, 11); // zoom from 0 to 19
 

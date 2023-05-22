@@ -1,4 +1,6 @@
-package org.example;
+package org.example.View;
+
+import org.example.Model.Friend;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,11 +14,12 @@ public class FriendsPanel extends JPanel implements ActionListener {
     FriendPanel friendPanel;
     AddFriendPanel addFriendPanel;
     List<Friend> friends;
+
     AddedFriendsScrollPane addedFriendsScrollPane;
     private JButton closeButton;
     private JButton addFriendButton;
 
-    FriendsPanel(FriendPanel friendPanel, AddFriendPanel addFriendPanel, List<Friend> friends) {
+    public FriendsPanel(FriendPanel friendPanel, AddFriendPanel addFriendPanel, List<Friend> friends) {
         this.friendPanel = friendPanel;
         this.addFriendPanel = addFriendPanel;
         this.friends = friends;
@@ -55,6 +58,10 @@ public class FriendsPanel extends JPanel implements ActionListener {
             }
         });
 
+    }
+
+    public AddedFriendsScrollPane getAddedFriendsScrollPane() {
+        return addedFriendsScrollPane;
     }
 
     @Override

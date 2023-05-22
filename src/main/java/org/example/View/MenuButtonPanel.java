@@ -1,4 +1,4 @@
-package org.example;
+package org.example.View;
 
 import javax.swing.*;
 import java.awt.*;
@@ -47,8 +47,7 @@ public class MenuButtonPanel extends JPanel implements ActionListener {
         if(e.getSource() == openSavedMarkersButton) {
             this.setVisible(false);
             menuPanel.backButton.setVisible(true);
-            menuPanel.savedMarkersPanel.UpdateShowCreatedMarkers();
-            //menuPanel.savedMarkersScrollPane.setViewportView(menuPanel.savedMarkersPanel);
+            menuPanel.savedMarkersScrollPane.UpdateShowCreatedMarkers();
             menuPanel.savedMarkersScrollPane.setVisible(true);
             System.out.println("Saved markers");
         }
@@ -56,6 +55,12 @@ public class MenuButtonPanel extends JPanel implements ActionListener {
             menuPanel.setVisible(false);
             createMeetingPanel.clearPanelInfo();
             createMeetingPanel.setVisible(true);
+        }
+        else if(e.getSource() == showMeetingsButton) {
+            this.setVisible(false);
+            menuPanel.backButton.setVisible(true);
+            menuPanel.allMeetingsScrollPane.UpdateShowAllMeetings();
+            menuPanel.allMeetingsScrollPane.setVisible(true);
         }
     }
 }

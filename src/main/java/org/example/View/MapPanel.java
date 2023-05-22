@@ -1,5 +1,7 @@
-package org.example;
+package org.example.View;
 
+import org.example.Model.ExpMapMarker;
+import org.example.Model.OSMMap;
 import org.openstreetmap.gui.jmapviewer.interfaces.ICoordinate;
 import org.openstreetmap.gui.jmapviewer.interfaces.MapMarker;
 
@@ -37,7 +39,7 @@ public class MapPanel extends JPanel implements ActionListener {
         }
     };
 
-    MapPanel(OSMMap map, MarkerPanel markerPanel, MenuPanel menuPanel) {
+    public MapPanel(OSMMap map, MarkerPanel markerPanel, MenuPanel menuPanel) {
         this.map = map;
         this.markerPanel = markerPanel;
         this.menuPanel = menuPanel;

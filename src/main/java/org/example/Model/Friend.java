@@ -1,4 +1,4 @@
-package org.example;
+package org.example.Model;
 
 import java.awt.*;
 import javax.imageio.ImageIO;
