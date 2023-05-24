@@ -59,6 +59,7 @@ public class MapPanelController {
     }
 
     public void mouseClicked(MouseEvent e) {
+        view.requestFocus();
         view.markerPosition = view.map.getPosition(e.getX(), e.getY());
         System.out.println(view.markerPosition);
         if (SwingUtilities.isRightMouseButton(e)) {

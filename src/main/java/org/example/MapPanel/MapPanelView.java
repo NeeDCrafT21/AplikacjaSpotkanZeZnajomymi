@@ -43,7 +43,7 @@ public class MapPanelView extends MapPanelTemplate implements ActionListener {
 
         this.setLayout(null);
         this.setBounds(0, 0, 1280, 720);
-        this.setFocusable(false);
+        //this.setFocusable(false);
         this.add(map);
         this.add(addMarkerPopupMenu);
     }

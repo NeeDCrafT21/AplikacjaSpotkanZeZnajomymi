@@ -38,7 +38,7 @@ public class MainFrameView extends MainFrameTemplate implements ActionListener {
         friendPanelView = new FriendPanelView();
         addFriendPanelView = new AddFriendPanelView(friendPanelView, friends);
         friendsPanelView = new FriendsPanelView(friendPanelView, addFriendPanelView, friends);
-        locationSearchBarPanelView = new LocationSearchBarPanelView();
+        locationSearchBarPanelView = new LocationSearchBarPanelView(mapPanelView);
 
         ImageIcon MFLogoImage = new ImageIcon("munefrakt_logo.png");
         JLabel MFLogo = new JLabel();
@@ -56,13 +56,13 @@ public class MainFrameView extends MainFrameTemplate implements ActionListener {
         menuButton = new JButton();
         menuButton.setBounds(20, 20, 50, 50);
         menuButton.setIcon(menuIcon);
-        menuButton.setFocusable(false);
+        //menuButton.setFocusable(false);
         menuButton.addActionListener(this);
 
         friendsButton = new JButton();
         friendsButton.setBounds(1195, 20, 50, 50);
         friendsButton.setIcon(friendsIcon);
-        friendsButton.setFocusable(false);
+        //friendsButton.setFocusable(false);
         friendsButton.addActionListener(this);
 
         ImageIcon appIcon = new ImageIcon("grupa_badawcza.png");
@@ -89,6 +89,7 @@ public class MainFrameView extends MainFrameTemplate implements ActionListener {
         layeredMainPane.add(createMarkerPanelView, JLayeredPane.POPUP_LAYER);
 
         this.setVisible(true);
+        this.requestFocus();
     }
 
     @Override
