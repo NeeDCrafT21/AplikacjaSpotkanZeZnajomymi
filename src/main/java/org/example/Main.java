@@ -1,12 +1,11 @@
 package org.example;
 
-import org.example.View.MainFrame;
-
 import java.io.IOException;
+import org.example.MainFrame.MainFrameView;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        MainFrame mainFrame = new MainFrame();
+        MainFrameView mainFrameView = new MainFrameView();
     }
 }

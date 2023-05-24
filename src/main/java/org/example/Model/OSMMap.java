@@ -4,10 +4,7 @@ import org.openstreetmap.gui.jmapviewer.Coordinate;
 import org.openstreetmap.gui.jmapviewer.JMapViewer;
 import org.openstreetmap.gui.jmapviewer.interfaces.ICoordinate;
 
-import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
-
-public class OSMMap extends JMapViewer implements MouseWheelListener {
+public class OSMMap extends JMapViewer {
 
     ExpMapMarker marker;
 
@@ -19,25 +16,10 @@ public class OSMMap extends JMapViewer implements MouseWheelListener {
         this.zoomInButton.setVisible(false);
         this.zoomOutButton.setVisible(false);
 
-
         marker = new ExpMapMarker("Warsaw", new Coordinate(52.23, 21.0));
         marker.isCreated = true;
         this.addMapMarker(marker);
 
         this.setBounds(0, 0, 1280, 720);
-        this.addMouseWheelListener(this);
-
-    }
-
-    @Override
-    public void mouseWheelMoved(MouseWheelEvent e) {
-        if(this.getZoom() <= 11) {
-            this.marker.setVisible(false);
-            //marker.setVisible(false);
-        }
-        else {
-            this.marker.setVisible(true);
-        }
-
     }
 }

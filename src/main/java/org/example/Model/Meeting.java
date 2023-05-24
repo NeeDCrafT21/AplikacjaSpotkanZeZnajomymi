@@ -3,7 +3,9 @@ package org.example.Model;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
+import lombok.Getter;
 
+@Getter
 public class Meeting {
     private List<Friend> attendingFriends;
     private ExpMapMarker meetingLocation;
@@ -11,7 +13,8 @@ public class Meeting {
     private LocalTime meetingTime;
     private Boolean isFinished = false;
 
-    public Meeting(List<Friend> attendingFriends, ExpMapMarker meetingLocation, Date meetingDate, LocalTime meetingTime) {
+    public Meeting(
+            List<Friend> attendingFriends, ExpMapMarker meetingLocation, Date meetingDate, LocalTime meetingTime) {
         this.attendingFriends = attendingFriends;
         this.meetingLocation = meetingLocation;
         this.meetingDate = meetingDate;
@@ -23,30 +26,5 @@ public class Meeting {
         System.out.println(meetingLocation);
         System.out.println(meetingDate);
         System.out.println(meetingTime);
-
-    }
-
-    public ExpMapMarker getMeetingLocation() {
-        return meetingLocation;
-    }
-
-    public List<Friend> getAttendingFriends() {
-        return attendingFriends;
-    }
-
-    public Date getMeetingDate() {
-        return meetingDate;
-    }
-
-    public LocalTime getMeetingTime() {
-        return meetingTime;
-    }
-
-    public Boolean getFinished() {
-        return isFinished;
-    }
-
-    public void setFinished(Boolean finished) {
-        isFinished = finished;
     }
 }

@@ -10,6 +10,5 @@ public class ExpMapMarker extends MapMarkerDot {
 
     public ExpMapMarker(String name, Coordinate coord) {
         super(name, coord);
-
     }
 }
