@@ -13,6 +13,7 @@ import org.example.Models.Meeting;
 import org.example.Models.OSMMap;
 import org.example.Panels.Meetings.CreateMeetingSelectFriendsScrollPane.CreateMeetingSelectFriendsScrollPaneView;
 import org.example.Panels.Meetings.CreateMeetingSelectPlaceScrollPane.CreateMeetingSelectPlaceScrollPaneView;
+import org.example.Service.DBConnection;
 import org.jdatepicker.impl.DateComponentFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
@@ -24,6 +25,8 @@ public class CreateMeetingPanelView extends CreateMeetingPanelTemplate implement
         this.friends = friends;
         this.meetings = meetings;
         controller = new CreateMeetingPanelController(this);
+
+        dbConnection = new DBConnection();
 
         ImageIcon closeIcon = new ImageIcon("close_icon.png");
         closeButton = new JButton();

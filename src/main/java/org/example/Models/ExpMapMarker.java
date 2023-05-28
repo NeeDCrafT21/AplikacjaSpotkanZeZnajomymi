@@ -8,9 +8,11 @@ import org.example.Service.LocationsReverseService;
 import org.openstreetmap.gui.jmapviewer.Coordinate;
 import org.openstreetmap.gui.jmapviewer.MapMarkerDot;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
-public class ExpMapMarker extends MapMarkerDot {
+public class ExpMapMarker extends MapMarkerDot implements Serializable {
 
     private boolean isCreated = false;
     private String description = "";

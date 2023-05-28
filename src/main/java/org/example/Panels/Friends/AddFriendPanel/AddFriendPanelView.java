@@ -10,12 +10,15 @@ import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import org.example.Models.Friend;
 import org.example.Panels.Friends.FriendPanel.FriendPanelView;
+import org.example.Service.DBConnection;
 
 public class AddFriendPanelView extends AddFriendPanelTemplate implements ActionListener {
     public AddFriendPanelView(FriendPanelView friendPanelView, List<Friend> friends) {
         this.friendPanelView = friendPanelView;
         this.friends = friends;
         controller = new AddFriendPanelController(this);
+
+        dbConnection = new DBConnection();
 
         ImageIcon closeIcon = new ImageIcon("close_icon.png");
         closeButton = new JButton();
@@ -32,16 +35,25 @@ public class AddFriendPanelView extends AddFriendPanelTemplate implements Action
 
         JLabel nameLabel = new JLabel();
         nameLabel.setText("Name");
-        nameLabel.setBounds(20, 65, 320, 30);
+        nameLabel.setBounds(20, 65, 195, 30);
         nameLabel.setFont(new Font(null, Font.PLAIN, 15));
 
         nameTextField = new JTextField();
-        nameTextField.setBounds(20, 95, 200, 25);
+        nameTextField.setBounds(20, 95, 195, 25);
         nameTextField.setFont(new Font(null, Font.PLAIN, 15));
+
+        JLabel nicknameLabel = new JLabel();
+        nicknameLabel.setText("Nick name");
+        nicknameLabel.setBounds(230, 65, 150, 30);
+        nicknameLabel.setFont(new Font(null, Font.PLAIN, 15));
+
+        nicknameTextField = new JTextField();
+        nicknameTextField.setBounds(230, 95, 150, 25);
+        nicknameTextField.setFont(new Font(null, Font.PLAIN, 15));
 
         JLabel descriptionLabel = new JLabel();
         descriptionLabel.setText("Description");
-        descriptionLabel.setBounds(20, 120, 320, 30);
+        descriptionLabel.setBounds(20, 120, 200, 30);
         descriptionLabel.setFont(new Font(null, Font.PLAIN, 15));
 
         descriptionTextArea = new JTextArea(5, 5);
@@ -52,7 +64,7 @@ public class AddFriendPanelView extends AddFriendPanelTemplate implements Action
         descriptionPane.setBounds(20, 150, 200, 70);
 
         addFriendButton = new JButton("Add friend");
-        addFriendButton.setBounds(150, 240, 100, 50);
+        addFriendButton.setBounds(70, 245, 100, 35);
         addFriendButton.setFocusable(false);
         addFriendButton.addActionListener(this);
 
@@ -66,6 +78,8 @@ public class AddFriendPanelView extends AddFriendPanelTemplate implements Action
         this.add(titleLabel);
         this.add(nameLabel);
         this.add(nameTextField);
+        this.add(nicknameLabel);
+        this.add(nicknameTextField);
         this.add(descriptionLabel);
         this.add(descriptionPane);
         this.add(addFriendButton);

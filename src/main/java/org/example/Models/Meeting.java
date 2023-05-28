@@ -4,8 +4,10 @@ import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class Meeting {
     private List<Friend> attendingFriends;
     private ExpMapMarker meetingLocation;

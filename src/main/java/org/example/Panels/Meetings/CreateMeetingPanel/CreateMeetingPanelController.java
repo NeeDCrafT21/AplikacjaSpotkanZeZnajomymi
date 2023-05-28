@@ -40,6 +40,7 @@ public class CreateMeetingPanelController {
                 Meeting newMeeting =
                         new Meeting(view.selectedFriends, view.selectedPlace, newMeetingDate, newMeetingTime);
                 view.meetings.add(newMeeting);
+                view.dbConnection.addMeeting(newMeeting);
                 newMeeting.printMeetingInfo();
                 clearPanelInfo();
                 view.setVisible(false);

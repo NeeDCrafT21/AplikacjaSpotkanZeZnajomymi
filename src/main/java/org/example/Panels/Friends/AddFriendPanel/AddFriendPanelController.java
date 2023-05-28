@@ -13,13 +13,25 @@ public class AddFriendPanelController {
     public void buttonClicked(ActionEvent e) {
         if (e.getSource() == view.closeButton) {
             view.setVisible(false);
-        } else if (e.getSource() == view.addFriendButton && !Objects.equals(view.nameTextField.getText(), "")) {
+        } else if (e.getSource() == view.addFriendButton
+                && !Objects.equals(view.nameTextField.getText(), "")
+                && !Objects.equals(view.nicknameTextField.getText(), "")) {
             try {
-                Friend newFriend = new Friend(view.nameTextField.getText());
+                Friend newFriend = new Friend(view.nicknameTextField.getText(), view.nameTextField.getText());
                 newFriend.setDescription(view.descriptionTextArea.getText());
+
+                for (Friend friend : view.friends) {
+                    if (Objects.equals(friend.getNickname(), newFriend.getNickname())) {
+                        System.out.println("Nickname already in use, use a different one");
+                        return;
+                    }
+                }
+
                 view.friends.add(newFriend);
+                view.dbConnection.addFriend(newFriend);
                 view.setVisible(false);
                 view.nameTextField.setText("");
+                view.nicknameTextField.setText("");
                 view.descriptionTextArea.setText("");
                 view.friendPanelView.getController().setupFriendInfo(newFriend);
             } catch (IOException ex) {

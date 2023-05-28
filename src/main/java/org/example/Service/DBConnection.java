@@ -2,10 +2,7 @@ package org.example.Service;
 
 import com.google.common.io.ByteSource;
 import java.io.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.SneakyThrows;
@@ -47,23 +44,20 @@ public class DBConnection {
 
     @SneakyThrows
     public void getMarkers(OSMMap map) {
-        List<ExpMapMarker> markers = new ArrayList<>();
         String query = "SELECT * FROM markers";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         ResultSet resultSet = preparedStatement.executeQuery();
+
         while (resultSet.next()) {
             ExpMapMarker marker = new ExpMapMarker(
                     resultSet.getString("name"),
                     new Coordinate(resultSet.getDouble("lat"), resultSet.getDouble("lon")));
             marker.setCreated(true);
             marker.setDescription(resultSet.getString("description"));
-
             marker.setLocation((LocationReverse) deSerializeObject(resultSet.getBinaryStream("location")));
-            markers.add(marker);
+
             map.addMapMarker(marker);
-            System.out.println(marker.getLocation());
         }
-        System.out.println("My markers: " + markers);
     }
 
     @SneakyThrows
@@ -75,7 +69,6 @@ public class DBConnection {
         LocationReverse location = marker.getLocation();
 
         String query = "INSERT INTO markers (lat, lon, name, description, location) VALUES (?, ?, ?, ?, ?)";
-
         PreparedStatement preparedStatement = connection.prepareStatement(query);
 
         preparedStatement.setDouble(1, lat);
@@ -92,21 +85,88 @@ public class DBConnection {
     public void deleteMarker(ExpMapMarker marker) {
         String query = "DELETE FROM markers WHERE lat = ? AND lon = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
+
         preparedStatement.setDouble(1, marker.getLat());
         preparedStatement.setDouble(2, marker.getLon());
+
         preparedStatement.executeUpdate();
         preparedStatement.close();
     }
 
+    @SneakyThrows
     public List<Friend> getFriends() {
         List<Friend> friends = new ArrayList<>();
+        String query = "SELECT * FROM friends";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            Friend friend = new Friend(resultSet.getString("nickname"), resultSet.getString("name"));
+            friend.setDescription(resultSet.getString("description"));
+        }
 
         return friends;
     }
 
+    @SneakyThrows
+    public void addFriend(Friend friend) {
+        String query = "INSERT INTO friends (nickname, name, description, image, imagetype) VALUES (?, ?, ?, ?, ?)";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+        preparedStatement.setString(1, friend.getNickname());
+        preparedStatement.setString(2, friend.getName());
+        preparedStatement.setString(3, friend.getDescription());
+        preparedStatement.setBinaryStream(4, null);
+        preparedStatement.setString(5, null);
+
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }
+
+    @SneakyThrows
     public List<Meeting> getMeetings() {
         List<Meeting> meetings = new ArrayList<>();
+        String query = "SELECT * FROM meetings";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            Meeting meeting = new Meeting(
+                    (List<Friend>) deSerializeObject(resultSet.getBinaryStream("attendingfriends")),
+                    (ExpMapMarker) deSerializeObject(resultSet.getBinaryStream("location")),
+
+                    resultSet.getDate("date"),
+                    resultSet.getTime("time").toLocalTime());
+            meeting.setIsFinished(resultSet.getBoolean("finished"));
+            meetings.add(meeting);
+        }
 
         return meetings;
     }
+
+    @SneakyThrows
+    public void addMeeting(Meeting meeting) {
+        String query = "INSERT INTO meetings (idmeetings, attendingfriends, location, date, time, finished) VALUES (?, ?, ?, ?, ?, ?)";
+        PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+
+        int lastID = 1;
+        ResultSet rs = preparedStatement.getGeneratedKeys();
+        if(rs.next()) {
+            lastID = rs.getInt(1);
+        }
+
+        //int lastID = preparedStatement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+
+        preparedStatement.setInt(1, lastID + 1);
+        preparedStatement.setBinaryStream(2, serializeObject(meeting.getAttendingFriends()));
+        preparedStatement.setBinaryStream(3, serializeObject(meeting.getMeetingLocation()));
+        preparedStatement.setDate(4, new java.sql.Date(meeting.getMeetingDate().getTime()));
+        preparedStatement.setTime(5, Time.valueOf(meeting.getMeetingTime()));
+        preparedStatement.setBoolean(6, meeting.getIsFinished());
+
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }
+
+
 }

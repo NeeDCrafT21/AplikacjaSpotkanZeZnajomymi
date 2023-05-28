@@ -1,12 +1,11 @@
 package org.example.Models;
 
+import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-
-import java.io.Serializable;
 
 @AllArgsConstructor
 @NoArgsConstructor

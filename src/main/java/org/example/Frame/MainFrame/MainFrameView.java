@@ -25,15 +25,13 @@ public class MainFrameView extends MainFrameTemplate implements ActionListener {
         controller = new MainFrameController(this);
         map = new OSMMap();
 
-        List<Friend> friends = new ArrayList<>();
-        List<Meeting> meetings = new ArrayList<>();
-
         DBConnection dbConnection = new DBConnection();
-        // dbConnection.addMarker(marker);
         dbConnection.getMarkers(map);
+        List<Friend> friends = dbConnection.getFriends();
+        List<Meeting> meetings = dbConnection.getMeetings();
 
         // tymczasowe
-        friends.add(new Friend("Grzegorz Brzeczyszczykiewicz"));
+        friends.add(new Friend("greg", "Grzegorz Brzeczyszczykiewicz"));
 
         createMarkerPanelView = new CreateMarkerPanelView(map);
         createMeetingPanelView = new CreateMeetingPanelView(map, friends, meetings);
