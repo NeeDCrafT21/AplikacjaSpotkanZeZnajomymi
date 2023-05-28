@@ -12,8 +12,6 @@ import org.example.Panels.Markers.MarkerPanel.MarkerPanelView;
 import org.example.Panels.Meetings.CreateMeetingPanel.CreateMeetingPanelView;
 import org.example.Panels.Menu.MenuPanel.MenuPanelView;
 import org.example.Panels.SearchBar.LocationSearchBarPanel.LocationSearchBarPanelView;
-import org.example.Service.LocationsReverseService;
-import org.example.Service.LocationsSearchService;
 
 @Getter
 public abstract class MainFrameTemplate extends JFrame {

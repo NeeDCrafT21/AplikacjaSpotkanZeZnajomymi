@@ -18,7 +18,6 @@ import org.example.Panels.Markers.MarkerPanel.MarkerPanelView;
 import org.example.Panels.Meetings.CreateMeetingPanel.CreateMeetingPanelView;
 import org.example.Panels.Menu.MenuPanel.MenuPanelView;
 import org.example.Panels.SearchBar.LocationSearchBarPanel.LocationSearchBarPanelView;
-import org.example.Service.LocationsReverseService;
 
 public class MainFrameView extends MainFrameTemplate implements ActionListener {
     public MainFrameView() throws IOException {

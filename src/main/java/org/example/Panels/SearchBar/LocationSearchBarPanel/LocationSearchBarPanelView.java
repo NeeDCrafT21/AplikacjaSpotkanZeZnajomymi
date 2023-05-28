@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
-
 import org.example.Models.OSMMap;
 import org.example.Panels.MapPanel.MapPanelView;
 
@@ -23,9 +22,9 @@ public class LocationSearchBarPanelView extends LocationSearchBarPanelTemplate
         searchBarTextField.addFocusListener(this);
         searchBarTextField.addActionListener(this);
 
-//        String[] locations = {
-//            "location 1", "location 2", "location 3", "location 4", "location 5", "location 6", "location 7"
-//        };
+        //        String[] locations = {
+        //            "location 1", "location 2", "location 3", "location 4", "location 5", "location 6", "location 7"
+        //        };
 
         locationNamesList = new DefaultListModel<>();
 

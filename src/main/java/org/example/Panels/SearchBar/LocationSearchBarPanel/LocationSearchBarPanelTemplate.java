@@ -1,5 +1,6 @@
 package org.example.Panels.SearchBar.LocationSearchBarPanel;
 
+import java.util.List;
 import javax.swing.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -7,8 +8,6 @@ import org.example.Models.ExpMapMarker;
 import org.example.Models.LocationSearch;
 import org.example.Models.OSMMap;
 import org.example.Panels.MapPanel.MapPanelView;
-
-import java.util.List;
 
 @Getter
 @Setter

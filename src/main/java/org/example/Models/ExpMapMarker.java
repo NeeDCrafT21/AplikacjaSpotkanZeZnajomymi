@@ -1,6 +1,7 @@
 package org.example.Models;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javax.swing.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.Service.LocationsReverseService;
@@ -19,8 +20,8 @@ public class ExpMapMarker extends MapMarkerDot {
         super(name, coord);
 
         LocationsReverseService locationsReverseService = new LocationsReverseService(new ObjectMapper());
-        String lat = this.getCoordinate().getLat()+"";
-        String lon = this.getCoordinate().getLon()+"";
+        String lat = String.valueOf(this.getCoordinate().getLat());
+        String lon = String.valueOf(this.getCoordinate().getLon());
         location = locationsReverseService.getLocationFromCoordinates(lat, lon, "18");
         System.out.println(location.getDisplayName());
     }

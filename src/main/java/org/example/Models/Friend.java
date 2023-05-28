@@ -10,7 +10,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Friend {
+
     private String name;
+    private String nickName;
     private String description = "";
     private String defaultImagePath = "friend_default.png";
 

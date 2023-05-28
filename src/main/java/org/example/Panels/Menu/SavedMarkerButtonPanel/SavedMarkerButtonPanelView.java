@@ -2,7 +2,6 @@ package org.example.Panels.Menu.SavedMarkerButtonPanel;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.text.SimpleDateFormat;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import org.example.Models.ExpMapMarker;

@@ -1,12 +1,12 @@
 package org.example.Panels.SearchBar.LocationSearchBarPanel;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseEvent;
 import java.util.Objects;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
+import javax.swing.*;
 import lombok.AllArgsConstructor;
 import org.example.Models.ExpMapMarker;
 import org.example.Models.LocationSearch;
@@ -18,26 +18,37 @@ public class LocationSearchBarPanelController {
     LocationSearchBarPanelView view;
 
     public void updateSearchList(String location) {
+        SwingWorker<Void, Void> worker = new SwingWorker<>() {
+            @Override
+            protected Void doInBackground() {
+                LocationsSearchService locationsSearchService = new LocationsSearchService(new ObjectMapper());
+                view.locationSearchList = locationsSearchService.getLocationsFromApi(location, 10);
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                for (LocationSearch loc : view.locationSearchList) {
+                    view.locationNamesList.addElement(loc.getDisplayName());
+                }
+                System.out.println(view.getLocationNamesList());
+
+                if (!view.locationNamesList.isEmpty()) {
+                    view.locationsListScrollPane.setVisible(true);
+                    view.getParent().repaint();
+                    view.getParent().revalidate();
+                } else {
+                    view.locationsListScrollPane.setVisible(false);
+                    view.getParent().repaint();
+                    view.getParent().revalidate();
+                }
+            }
+        };
+
         view.locationNamesList.clear();
-        LocationsSearchService locationsSearchService = new LocationsSearchService(new ObjectMapper());
-
-        view.locationSearchList = locationsSearchService.getLocationsFromApi(location, 10);
-
-        for (LocationSearch loc : view.locationSearchList) {
-            view.locationNamesList.addElement(loc.getDisplayName());
-        }
-        System.out.println(view.getLocationNamesList());
-
-        if(!view.locationNamesList.isEmpty()) {
-            view.locationsListScrollPane.setVisible(true);
-            view.getParent().repaint();
-            view.getParent().revalidate();
-        }
-        else {
-            view.locationsListScrollPane.setVisible(false);
-            view.getParent().repaint();
-            view.getParent().revalidate();
-        }
+        view.getParent().repaint();
+        view.getParent().revalidate();
+        worker.execute();
     }
 
     public void setTempMarker(Coordinate coordinate) {
