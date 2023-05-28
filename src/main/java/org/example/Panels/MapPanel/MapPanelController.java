@@ -81,6 +81,7 @@ public class MapPanelController {
             showMarker(view.clickedMarker);
         } else if (e.getSource() == view.deleteMarkerPMItem) {
             view.map.removeMapMarker(view.clickedMarker);
+            view.dbConnection.deleteMarker(view.clickedMarker);
         }
     }
 }

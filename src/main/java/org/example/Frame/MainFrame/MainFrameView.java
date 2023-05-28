@@ -18,6 +18,7 @@ import org.example.Panels.Markers.MarkerPanel.MarkerPanelView;
 import org.example.Panels.Meetings.CreateMeetingPanel.CreateMeetingPanelView;
 import org.example.Panels.Menu.MenuPanel.MenuPanelView;
 import org.example.Panels.SearchBar.LocationSearchBarPanel.LocationSearchBarPanelView;
+import org.example.Service.DBConnection;
 
 public class MainFrameView extends MainFrameTemplate implements ActionListener {
     public MainFrameView() throws IOException {
@@ -26,6 +27,10 @@ public class MainFrameView extends MainFrameTemplate implements ActionListener {
 
         List<Friend> friends = new ArrayList<>();
         List<Meeting> meetings = new ArrayList<>();
+
+        DBConnection dbConnection = new DBConnection();
+        // dbConnection.addMarker(marker);
+        dbConnection.getMarkers(map);
 
         // tymczasowe
         friends.add(new Friend("Grzegorz Brzeczyszczykiewicz"));

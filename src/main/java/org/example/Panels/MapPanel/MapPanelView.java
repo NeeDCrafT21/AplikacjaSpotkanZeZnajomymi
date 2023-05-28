@@ -6,6 +6,7 @@ import org.example.Models.OSMMap;
 import org.example.Panels.Markers.CreateMarkerPanel.CreateMarkerPanelView;
 import org.example.Panels.Markers.MarkerPanel.MarkerPanelView;
 import org.example.Panels.Menu.MenuPanel.MenuPanelView;
+import org.example.Service.DBConnection;
 
 public class MapPanelView extends MapPanelTemplate implements ActionListener {
     public MapPanelView(
@@ -18,6 +19,8 @@ public class MapPanelView extends MapPanelTemplate implements ActionListener {
         this.menuPanel = menuPanel;
         this.createMarkerPanelView = createMarkerPanelView;
         controller = new MapPanelController(this);
+
+        dbConnection = new DBConnection();
 
         addMarkerPopupMenu = new JPopupMenu();
         placeMarkerPMItem = new JMenuItem("Place marker");

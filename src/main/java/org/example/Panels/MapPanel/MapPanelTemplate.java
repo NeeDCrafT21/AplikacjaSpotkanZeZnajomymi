@@ -8,6 +8,7 @@ import org.example.Models.OSMMap;
 import org.example.Panels.Markers.CreateMarkerPanel.CreateMarkerPanelView;
 import org.example.Panels.Markers.MarkerPanel.MarkerPanelView;
 import org.example.Panels.Menu.MenuPanel.MenuPanelView;
+import org.example.Service.DBConnection;
 import org.openstreetmap.gui.jmapviewer.interfaces.ICoordinate;
 
 @Getter
@@ -27,4 +28,5 @@ public abstract class MapPanelTemplate extends JPanel {
     JPopupMenu editMarkerPopupMenu;
     MouseAdapter mouseAdapter;
     MapPanelController controller;
+    DBConnection dbConnection;
 }

@@ -16,9 +16,9 @@ public class OSMMap extends JMapViewer {
         this.zoomInButton.setVisible(false);
         this.zoomOutButton.setVisible(false);
 
-        marker = new ExpMapMarker("Warsaw", new Coordinate(52.23, 21.0));
-        marker.setCreated(true);
-        this.addMapMarker(marker);
+        //        marker = new ExpMapMarker("Warsaw", new Coordinate(52.23, 21.0));
+        //        marker.setCreated(true);
+        //        this.addMapMarker(marker);
 
         this.setBounds(0, 0, 1280, 720);
     }

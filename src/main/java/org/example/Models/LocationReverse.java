@@ -1,5 +1,6 @@
 package org.example.Models;
 
+import java.io.Serializable;
 import java.util.Map;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -9,7 +10,7 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @Data
-public class LocationReverse extends LocationSearch {
+public class LocationReverse extends LocationSearch implements Serializable {
     //    private int placeId;
     //    private String lat;
     //    private String lon;
