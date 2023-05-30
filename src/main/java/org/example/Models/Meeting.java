@@ -10,13 +10,13 @@ import lombok.Setter;
 @Setter
 public class Meeting {
     private List<Friend> attendingFriends;
-    private ExpMapMarker meetingLocation;
+    private MeetingExpMapMarker meetingLocation;
     private Date meetingDate;
     private LocalTime meetingTime;
     private Boolean isFinished = false;
 
     public Meeting(
-            List<Friend> attendingFriends, ExpMapMarker meetingLocation, Date meetingDate, LocalTime meetingTime) {
+            List<Friend> attendingFriends, MeetingExpMapMarker meetingLocation, Date meetingDate, LocalTime meetingTime) {
         this.attendingFriends = attendingFriends;
         this.meetingLocation = meetingLocation;
         this.meetingDate = meetingDate;

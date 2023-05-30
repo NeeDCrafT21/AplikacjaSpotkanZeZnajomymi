@@ -103,6 +103,7 @@ public class DBConnection {
         while (resultSet.next()) {
             Friend friend = new Friend(resultSet.getString("nickname"), resultSet.getString("name"));
             friend.setDescription(resultSet.getString("description"));
+            friends.add(friend);
         }
 
         return friends;
@@ -133,8 +134,7 @@ public class DBConnection {
         while (resultSet.next()) {
             Meeting meeting = new Meeting(
                     (List<Friend>) deSerializeObject(resultSet.getBinaryStream("attendingfriends")),
-                    (ExpMapMarker) deSerializeObject(resultSet.getBinaryStream("location")),
-
+                    (MeetingExpMapMarker) deSerializeObject(resultSet.getBinaryStream("location")),
                     resultSet.getDate("date"),
                     resultSet.getTime("time").toLocalTime());
             meeting.setIsFinished(resultSet.getBoolean("finished"));
@@ -146,18 +146,22 @@ public class DBConnection {
 
     @SneakyThrows
     public void addMeeting(Meeting meeting) {
+        Statement statement = connection.createStatement();
+        String getMaxIdQuery = "SELECT MAX(idmeetings) FROM meetings";
+        ResultSet resultSet = statement.executeQuery(getMaxIdQuery);
+
+        int lastRowId = 0;
+        if (resultSet.next()) {
+            lastRowId = resultSet.getInt(1);
+        }
+        resultSet.close();
+
+        int newID = lastRowId + 1;
+
         String query = "INSERT INTO meetings (idmeetings, attendingfriends, location, date, time, finished) VALUES (?, ?, ?, ?, ?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
-        int lastID = 1;
-        ResultSet rs = preparedStatement.getGeneratedKeys();
-        if(rs.next()) {
-            lastID = rs.getInt(1);
-        }
-
-        //int lastID = preparedStatement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
-
-        preparedStatement.setInt(1, lastID + 1);
+        preparedStatement.setInt(1, newID);
         preparedStatement.setBinaryStream(2, serializeObject(meeting.getAttendingFriends()));
         preparedStatement.setBinaryStream(3, serializeObject(meeting.getMeetingLocation()));
         preparedStatement.setDate(4, new java.sql.Date(meeting.getMeetingDate().getTime()));

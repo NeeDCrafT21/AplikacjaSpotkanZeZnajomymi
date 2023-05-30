@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import org.example.Models.Meeting;
+import org.example.Models.MeetingExpMapMarker;
 
 @AllArgsConstructor
 public class CreateMeetingPanelController {
@@ -37,8 +38,9 @@ public class CreateMeetingPanelController {
                 Date newMeetingDate = (Date) view.datePicker.getModel().getValue();
                 LocalTime newMeetingTime = LocalTime.parse(
                         view.hourComboBox.getSelectedItem() + ":" + view.minutesComboBox.getSelectedItem());
+                MeetingExpMapMarker meetingMarker = new MeetingExpMapMarker(view.selectedPlace.getName(), view.selectedPlace.getDescription(), view.selectedPlace.getLocation());
                 Meeting newMeeting =
-                        new Meeting(view.selectedFriends, view.selectedPlace, newMeetingDate, newMeetingTime);
+                        new Meeting(view.selectedFriends, meetingMarker, newMeetingDate, newMeetingTime);
                 view.meetings.add(newMeeting);
                 view.dbConnection.addMeeting(newMeeting);
                 newMeeting.printMeetingInfo();
