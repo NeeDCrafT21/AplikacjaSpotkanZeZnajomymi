@@ -2,8 +2,10 @@ package org.example.Panels.Meetings.CreateMeetingPanel;
 
 import java.awt.event.ActionEvent;
 import java.time.LocalTime;
+import java.util.Collections;
 import java.util.Date;
 import lombok.AllArgsConstructor;
+import org.example.Models.Controllers;
 import org.example.Models.Meeting;
 import org.example.Models.MeetingExpMapMarker;
 
@@ -42,7 +44,7 @@ public class CreateMeetingPanelController {
                 Meeting newMeeting =
                         new Meeting(view.selectedFriends, meetingMarker, newMeetingDate, newMeetingTime);
                 view.meetings.add(newMeeting);
-                view.dbConnection.addMeeting(newMeeting);
+                Controllers.mainFrameController.getDbConnection().addMeeting(newMeeting);
                 newMeeting.printMeetingInfo();
                 clearPanelInfo();
                 view.setVisible(false);

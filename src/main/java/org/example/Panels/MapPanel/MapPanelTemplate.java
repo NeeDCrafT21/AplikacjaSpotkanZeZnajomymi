@@ -8,13 +8,12 @@ import org.example.Models.OSMMap;
 import org.example.Panels.Markers.CreateMarkerPanel.CreateMarkerPanelView;
 import org.example.Panels.Markers.MarkerPanel.MarkerPanelView;
 import org.example.Panels.Menu.MenuPanel.MenuPanelView;
-import org.example.Service.DBConnection;
 import org.openstreetmap.gui.jmapviewer.interfaces.ICoordinate;
 
 @Getter
 public abstract class MapPanelTemplate extends JPanel {
     OSMMap map;
-    MenuPanelView menuPanel;
+    MenuPanelView menuPanelView;
     MarkerPanelView markerPanelView;
     CreateMarkerPanelView createMarkerPanelView;
 
@@ -26,7 +25,5 @@ public abstract class MapPanelTemplate extends JPanel {
     JMenuItem deleteMarkerPMItem;
     JPopupMenu addMarkerPopupMenu;
     JPopupMenu editMarkerPopupMenu;
-    MouseAdapter mouseAdapter;
     MapPanelController controller;
-    DBConnection dbConnection;
 }

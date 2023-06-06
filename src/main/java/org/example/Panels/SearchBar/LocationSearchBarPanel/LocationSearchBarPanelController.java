@@ -51,13 +51,15 @@ public class LocationSearchBarPanelController {
         worker.execute();
     }
 
-    public void setTempMarker(Coordinate coordinate) {
+    private void setTempMarker(Coordinate coordinate) {
         view.tempMarker = new ExpMapMarker("Marker", coordinate);
-        view.tempMarker.setColor(Color.RED);
+        view.tempMarker.setTemp(true);
+        //view.tempMarker.setColor(Color.RED);
+        view.tempMarker.setBackColor(Color.RED);
         view.map.addMapMarker(view.tempMarker);
     }
 
-    public void markChosenLocation(int index) {
+    private void markChosenLocation(int index) {
         view.map.removeMapMarker(view.tempMarker);
         LocationSearch location = view.locationSearchList.get(index);
         double lat = Double.parseDouble(location.getLat());

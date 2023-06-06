@@ -17,5 +17,4 @@ public abstract class AddFriendPanelTemplate extends JPanel {
     protected JTextArea descriptionTextArea;
     protected FriendPanelView friendPanelView;
     protected List<Friend> friends;
-    protected DBConnection dbConnection;
 }

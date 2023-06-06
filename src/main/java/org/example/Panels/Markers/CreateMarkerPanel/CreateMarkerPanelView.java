@@ -8,15 +8,14 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import org.example.Models.OSMMap;
+import org.example.Models.Views;
 import org.example.Service.DBConnection;
 
 public class CreateMarkerPanelView extends CreateMarkerPanelTemplate implements ActionListener {
 
-    public CreateMarkerPanelView(OSMMap map) {
-        this.map = map;
+    public CreateMarkerPanelView() {
+        this.map = Views.mainFrameView.getMap();
         controller = new CreateMarkerController(this);
-
-        dbConnection = new DBConnection();
 
         ImageIcon closeIcon = new ImageIcon("close_icon.png");
         closeButton = new JButton();

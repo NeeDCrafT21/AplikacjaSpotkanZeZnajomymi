@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
 import lombok.AllArgsConstructor;
+import org.example.Models.Controllers;
 import org.example.Models.ExpMapMarker;
 import org.openstreetmap.gui.jmapviewer.interfaces.ICoordinate;
 import org.openstreetmap.gui.jmapviewer.interfaces.MapMarker;
@@ -16,7 +17,7 @@ public class MapPanelController {
         if (view.createMarkerPanelView != null && view.createMarkerPanelView.isValid()) {
             view.createMarkerPanelView.setVisible(false);
         }
-        view.menuPanel.getController().closePanel();
+        view.menuPanelView.getController().closePanel();
         System.out.println(clickedMarker);
 
         if (view.markerPanelView != null && view.markerPanelView.isValid()) {
@@ -68,6 +69,9 @@ public class MapPanelController {
             if (view.clickedMarker.isCreated()) {
                 view.editMarkerPopupMenu.show(view.map, e.getX(), e.getY());
             }
+            else if (view.clickedMarker.isTemp()) {
+                view.addMarkerPopupMenu.show(view.map, e.getX(), e.getY());
+            }
         }
     }
 
@@ -81,7 +85,7 @@ public class MapPanelController {
             showMarker(view.clickedMarker);
         } else if (e.getSource() == view.deleteMarkerPMItem) {
             view.map.removeMapMarker(view.clickedMarker);
-            view.dbConnection.deleteMarker(view.clickedMarker);
+            Controllers.mainFrameController.getDbConnection().deleteMarker(view.clickedMarker);
         }
     }
 }

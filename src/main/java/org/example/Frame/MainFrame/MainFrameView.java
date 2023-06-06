@@ -1,7 +1,6 @@
 package org.example.Frame.MainFrame;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +8,7 @@ import javax.swing.*;
 import org.example.Models.Friend;
 import org.example.Models.Meeting;
 import org.example.Models.OSMMap;
+import org.example.Models.Views;
 import org.example.Panels.Friends.AddFriendPanel.AddFriendPanelView;
 import org.example.Panels.Friends.FriendPanel.FriendPanelView;
 import org.example.Panels.Friends.FriendsPanel.FriendsPanelView;
@@ -21,25 +21,20 @@ import org.example.Panels.SearchBar.LocationSearchBarPanel.LocationSearchBarPane
 import org.example.Service.DBConnection;
 
 public class MainFrameView extends MainFrameTemplate implements ActionListener {
-    public MainFrameView() throws IOException {
+    public MainFrameView() {
         controller = new MainFrameController(this);
-        map = new OSMMap();
-
-        DBConnection dbConnection = new DBConnection();
-        dbConnection.getMarkers(map);
-        List<Friend> friends = dbConnection.getFriends();
-        List<Meeting> meetings = dbConnection.getMeetings();
+        Views.mainFrameView = this;
 
         // tymczasowe
-        friends.add(new Friend("greg", "Grzegorz Brzeczyszczykiewicz"));
+//        friends.add(new Friend("greg", "Grzegorz Brzeczyszczykiewicz"));
 
-        createMarkerPanelView = new CreateMarkerPanelView(map);
-        createMeetingPanelView = new CreateMeetingPanelView(map, friends, meetings);
+        createMarkerPanelView = new CreateMarkerPanelView();
+        createMeetingPanelView = new CreateMeetingPanelView();
         markerPanelView = new MarkerPanelView();
         menuPanelView = new MenuPanelView(map, markerPanelView, createMeetingPanelView, meetings);
-        mapPanelView = new MapPanelView(map, markerPanelView, menuPanelView, createMarkerPanelView);
+        mapPanelView = new MapPanelView();
         friendPanelView = new FriendPanelView();
-        addFriendPanelView = new AddFriendPanelView(friendPanelView, friends);
+        addFriendPanelView = new AddFriendPanelView(friendPanelView);
         friendsPanelView = new FriendsPanelView(friendPanelView, addFriendPanelView, friends);
         locationSearchBarPanelView = new LocationSearchBarPanelView(mapPanelView, map);
 
@@ -77,6 +72,12 @@ public class MainFrameView extends MainFrameTemplate implements ActionListener {
         this.setLayout(null);
         this.setSize(1280, 720);
         this.setResizable(false);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                controller.exitingApp(e);
+            }
+        });
 
         layeredMainPane.add(mapPanelView);
         layeredMainPane.add(markerPanelView, JLayeredPane.PALETTE_LAYER);

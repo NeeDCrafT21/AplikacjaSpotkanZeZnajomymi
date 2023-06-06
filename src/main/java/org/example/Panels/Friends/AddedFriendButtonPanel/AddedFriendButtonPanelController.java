@@ -6,6 +6,9 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import lombok.AllArgsConstructor;
+import org.example.Models.Controllers;
+import org.example.Models.Views;
+import org.example.Panels.Friends.FriendsPanel.FriendsPanelView;
 
 @AllArgsConstructor
 public class AddedFriendButtonPanelController {
@@ -35,6 +38,8 @@ public class AddedFriendButtonPanelController {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == view.closeButton) {
             view.setVisible(false);
+            Views.mainFrameView.getFriends().remove(view.friend);
+            Controllers.mainFrameController.getDbConnection().deleteFriend(view.friend);
         }
     }
 

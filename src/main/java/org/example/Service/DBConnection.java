@@ -5,11 +5,14 @@ import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import lombok.Getter;
 import lombok.SneakyThrows;
 import org.apache.commons.compress.utils.IOUtils;
 import org.example.Models.*;
 import org.openstreetmap.gui.jmapviewer.Coordinate;
 
+@Getter
 public class DBConnection {
     private final Connection connection;
 
@@ -125,6 +128,17 @@ public class DBConnection {
     }
 
     @SneakyThrows
+    public void deleteFriend(Friend friend) {
+        String query = "DELETE FROM friends WHERE nickname = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+        preparedStatement.setString(1, friend.getNickname());
+
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }
+
+    @SneakyThrows
     public List<Meeting> getMeetings() {
         List<Meeting> meetings = new ArrayList<>();
         String query = "SELECT * FROM meetings";
@@ -172,5 +186,8 @@ public class DBConnection {
         preparedStatement.close();
     }
 
-
+    @SneakyThrows
+    public void closeConnection() {
+        connection.close();
+    }
 }

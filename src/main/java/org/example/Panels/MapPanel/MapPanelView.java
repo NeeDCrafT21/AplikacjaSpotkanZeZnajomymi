@@ -3,24 +3,18 @@ package org.example.Panels.MapPanel;
 import java.awt.event.*;
 import javax.swing.*;
 import org.example.Models.OSMMap;
+import org.example.Models.Views;
 import org.example.Panels.Markers.CreateMarkerPanel.CreateMarkerPanelView;
 import org.example.Panels.Markers.MarkerPanel.MarkerPanelView;
 import org.example.Panels.Menu.MenuPanel.MenuPanelView;
-import org.example.Service.DBConnection;
 
 public class MapPanelView extends MapPanelTemplate implements ActionListener {
-    public MapPanelView(
-            OSMMap map,
-            MarkerPanelView markerPanelView,
-            MenuPanelView menuPanel,
-            CreateMarkerPanelView createMarkerPanelView) {
-        this.map = map;
-        this.markerPanelView = markerPanelView;
-        this.menuPanel = menuPanel;
-        this.createMarkerPanelView = createMarkerPanelView;
+    public MapPanelView() {
+        this.map = Views.mainFrameView.getMap();
+        this.markerPanelView = Views.mainFrameView.getMarkerPanelView();
+        this.menuPanelView = Views.mainFrameView.getMenuPanelView();
+        this.createMarkerPanelView = Views.mainFrameView.getCreateMarkerPanelView();
         controller = new MapPanelController(this);
-
-        dbConnection = new DBConnection();
 
         addMarkerPopupMenu = new JPopupMenu();
         placeMarkerPMItem = new JMenuItem("Place marker");
@@ -35,14 +29,12 @@ public class MapPanelView extends MapPanelTemplate implements ActionListener {
         editMarkerPopupMenu.add(showMarkerPMItem);
         editMarkerPopupMenu.add(deleteMarkerPMItem);
 
-        mouseAdapter = new MouseAdapter() {
+        map.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 controller.mouseClicked(e);
             }
-        };
-
-        map.addMouseListener(mouseAdapter);
+        });
 
         this.setLayout(null);
         this.setBounds(0, 0, 1280, 720);

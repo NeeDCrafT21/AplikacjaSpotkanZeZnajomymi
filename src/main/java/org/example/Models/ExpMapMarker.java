@@ -15,6 +15,7 @@ import java.io.Serializable;
 public class ExpMapMarker extends MapMarkerDot implements Serializable {
 
     private boolean isCreated = false;
+    private boolean isTemp = false;
     private String description = "";
     private LocationReverse location;
 

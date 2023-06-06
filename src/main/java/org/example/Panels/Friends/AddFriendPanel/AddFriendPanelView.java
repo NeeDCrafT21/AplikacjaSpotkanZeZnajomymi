@@ -9,16 +9,15 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import org.example.Models.Friend;
+import org.example.Models.Views;
 import org.example.Panels.Friends.FriendPanel.FriendPanelView;
 import org.example.Service.DBConnection;
 
 public class AddFriendPanelView extends AddFriendPanelTemplate implements ActionListener {
-    public AddFriendPanelView(FriendPanelView friendPanelView, List<Friend> friends) {
+    public AddFriendPanelView(FriendPanelView friendPanelView) {
         this.friendPanelView = friendPanelView;
-        this.friends = friends;
+        this.friends = Views.mainFrameView.getFriends();
         controller = new AddFriendPanelController(this);
-
-        dbConnection = new DBConnection();
 
         ImageIcon closeIcon = new ImageIcon("close_icon.png");
         closeButton = new JButton();

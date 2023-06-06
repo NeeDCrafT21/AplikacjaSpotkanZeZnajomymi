@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.Objects;
 import lombok.AllArgsConstructor;
+import org.example.Models.Controllers;
 import org.example.Models.Friend;
 
 @AllArgsConstructor
@@ -28,7 +29,7 @@ public class AddFriendPanelController {
                 }
 
                 view.friends.add(newFriend);
-                view.dbConnection.addFriend(newFriend);
+                Controllers.mainFrameController.getDbConnection().addFriend(newFriend);
                 view.setVisible(false);
                 view.nameTextField.setText("");
                 view.nicknameTextField.setText("");
