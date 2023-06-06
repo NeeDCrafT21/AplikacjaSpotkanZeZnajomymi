@@ -12,4 +12,6 @@ public abstract class AddedFriendButtonPanelTemplate extends JPanel {
     protected FriendsPanelView friendsPanelView;
     protected FriendPanelView friendPanelView;
     protected Friend friend;
+    protected JTextArea nameLabel;
+    protected JButton closeButton;
 }
