@@ -1,15 +1,32 @@
 package org.example.Panels.Friends.AddFriendPanel;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusEvent;
 import java.io.IOException;
 import java.util.Objects;
 import lombok.AllArgsConstructor;
 import org.example.Models.Controllers;
 import org.example.Models.Friend;
 
-@AllArgsConstructor
 public class AddFriendPanelController {
     AddFriendPanelView view;
+
+    public AddFriendPanelController(AddFriendPanelView view) {
+        this.view = view;
+        Controllers.addFriendPanelController = this;
+    }
+
+    public void focusLost(FocusEvent e) {
+        if(!view.nameTextField.getText().equals("") && view.nicknameTextField.getText().equals("")) {
+            view.nicknameTextField.setText(view.nameTextField.getText().toLowerCase().replace("\s", ""));
+        }
+    }
+
+    public void clearInfo() {
+        view.nameTextField.setText("");
+        view.nicknameTextField.setText("");
+        view.descriptionTextArea.setText("");
+    }
 
     public void buttonClicked(ActionEvent e) {
         if (e.getSource() == view.closeButton) {
@@ -30,9 +47,7 @@ public class AddFriendPanelController {
             view.friends.add(newFriend);
             Controllers.mainFrameController.getDbConnection().addFriend(newFriend);
             view.setVisible(false);
-            view.nameTextField.setText("");
-            view.nicknameTextField.setText("");
-            view.descriptionTextArea.setText("");
+            clearInfo();
             view.friendPanelView.getController().setupFriendInfo(newFriend);
         }
     }

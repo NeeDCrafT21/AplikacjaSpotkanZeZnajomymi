@@ -28,6 +28,11 @@ public class AddedFriendButtonPanelView extends AddedFriendButtonPanelTemplate i
             public void mouseEntered(MouseEvent e) {
                 controller.panelElementMouseEntered(e);
             }
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                controller.mouseClicked(e);
+            }
+
         });
 
 

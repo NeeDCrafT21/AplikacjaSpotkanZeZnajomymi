@@ -1,10 +1,7 @@
 package org.example.Panels.Friends.AddFriendPanel;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.util.List;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -40,6 +37,12 @@ public class AddFriendPanelView extends AddFriendPanelTemplate implements Action
         nameTextField = new JTextField();
         nameTextField.setBounds(20, 95, 195, 25);
         nameTextField.setFont(new Font(null, Font.PLAIN, 15));
+        nameTextField.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                controller.focusLost(e);
+            }
+        });
 
         JLabel nicknameLabel = new JLabel();
         nicknameLabel.setText("Nick name");
