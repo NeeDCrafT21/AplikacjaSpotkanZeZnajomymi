@@ -17,27 +17,23 @@ public class AddFriendPanelController {
         } else if (e.getSource() == view.addFriendButton
                 && !Objects.equals(view.nameTextField.getText(), "")
                 && !Objects.equals(view.nicknameTextField.getText(), "")) {
-            try {
-                Friend newFriend = new Friend(view.nicknameTextField.getText(), view.nameTextField.getText());
-                newFriend.setDescription(view.descriptionTextArea.getText());
+            Friend newFriend = new Friend(view.nicknameTextField.getText(), view.nameTextField.getText());
+            newFriend.setDescription(view.descriptionTextArea.getText());
 
-                for (Friend friend : view.friends) {
-                    if (Objects.equals(friend.getNickname(), newFriend.getNickname())) {
-                        System.out.println("Nickname already in use, use a different one");
-                        return;
-                    }
+            for (Friend friend : view.friends) {
+                if (Objects.equals(friend.getNickname(), newFriend.getNickname())) {
+                    System.out.println("Nickname already in use, use a different one");
+                    return;
                 }
-
-                view.friends.add(newFriend);
-                Controllers.mainFrameController.getDbConnection().addFriend(newFriend);
-                view.setVisible(false);
-                view.nameTextField.setText("");
-                view.nicknameTextField.setText("");
-                view.descriptionTextArea.setText("");
-                view.friendPanelView.getController().setupFriendInfo(newFriend);
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
             }
+
+            view.friends.add(newFriend);
+            Controllers.mainFrameController.getDbConnection().addFriend(newFriend);
+            view.setVisible(false);
+            view.nameTextField.setText("");
+            view.nicknameTextField.setText("");
+            view.descriptionTextArea.setText("");
+            view.friendPanelView.getController().setupFriendInfo(newFriend);
         }
     }
 }

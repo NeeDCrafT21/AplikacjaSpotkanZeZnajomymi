@@ -9,4 +9,9 @@ public abstract class MarkerPanelTemplate extends JPanel {
     protected JButton closeMenuButton;
     protected JTextArea descriptionTextArea;
     protected JLabel nameLabel;
+    protected ImageIcon locationPicture;
+    protected JLabel locationPictureLabel;
+    protected JTextArea addressTextArea;
+    protected JLabel lonLabel;
+    protected JLabel latLabel;
 }

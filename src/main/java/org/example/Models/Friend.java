@@ -7,6 +7,7 @@ import java.io.Serializable;
 import javax.imageio.ImageIO;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.SneakyThrows;
 
 @Getter
 @Setter
@@ -19,7 +20,8 @@ public class Friend implements Serializable {
 
     private transient  Image profilePicture;
 
-    public Friend(String nickname, String name) throws IOException {
+    @SneakyThrows
+    public Friend(String nickname, String name) {
         this.nickname = nickname;
         this.name = name;
         profilePicture = ImageIO.read(new File(defaultImagePath));
