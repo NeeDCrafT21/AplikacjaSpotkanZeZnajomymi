@@ -1,7 +1,9 @@
 package org.example.Panels.Meetings.CreateMeetingPanel;
 
 import java.awt.event.ActionEvent;
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.Collections;
 import java.util.Date;
 import lombok.AllArgsConstructor;
@@ -21,6 +23,7 @@ public class CreateMeetingPanelController {
         view.minutesComboBox.setSelectedIndex(0);
         view.selectedFriends.clear();
         view.selectedPlace = null;
+        view.errorLabel.setVisible(false);
     }
 
     public void buttonClicked(ActionEvent e) {
@@ -33,8 +36,12 @@ public class CreateMeetingPanelController {
             todaysDate.setMinutes(0);
             if (view.selectedFriends.isEmpty() || view.selectedPlace == null) {
                 System.out.println("Niepoprawne dane");
+                view.errorLabel.setText("Select friends and/or place");
+                view.errorLabel.setVisible(true);
             } else if (meetingDate == null || meetingDate.before(todaysDate)) {
                 System.out.println("Wybierz date pozniejsza niz dzisiejsza");
+                view.errorLabel.setText("Choose a date later than today");
+                view.errorLabel.setVisible(true);
                 view.datePicker.getModel().setValue(null);
             } else {
                 Date newMeetingDate = (Date) view.datePicker.getModel().getValue();
@@ -42,7 +49,7 @@ public class CreateMeetingPanelController {
                         view.hourComboBox.getSelectedItem() + ":" + view.minutesComboBox.getSelectedItem());
                 MeetingExpMapMarker meetingMarker = new MeetingExpMapMarker(view.selectedPlace.getName(), view.selectedPlace.getDescription(), view.selectedPlace.getLocation());
                 Meeting newMeeting =
-                        new Meeting(view.selectedFriends, meetingMarker, newMeetingDate, newMeetingTime);
+                        new Meeting(view.selectedFriends, meetingMarker, newMeetingDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), newMeetingTime);
                 view.meetings.add(newMeeting);
                 Controllers.mainFrameController.getDbConnection().addMeeting(newMeeting);
                 newMeeting.printMeetingInfo();

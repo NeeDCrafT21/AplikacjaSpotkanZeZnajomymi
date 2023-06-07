@@ -32,7 +32,7 @@ public class AddFriendPanelView extends AddFriendPanelTemplate implements Action
         JLabel nameLabel = new JLabel();
         nameLabel.setText("Name");
         nameLabel.setBounds(20, 65, 195, 30);
-        nameLabel.setFont(new Font(null, Font.PLAIN, 15));
+        nameLabel.setFont(new Font(null, Font.BOLD, 15));
 
         nameTextField = new JTextField();
         nameTextField.setBounds(20, 95, 195, 25);
@@ -45,9 +45,9 @@ public class AddFriendPanelView extends AddFriendPanelTemplate implements Action
         });
 
         JLabel nicknameLabel = new JLabel();
-        nicknameLabel.setText("Nick name");
+        nicknameLabel.setText("Nickname");
         nicknameLabel.setBounds(230, 65, 150, 30);
-        nicknameLabel.setFont(new Font(null, Font.PLAIN, 15));
+        nicknameLabel.setFont(new Font(null, Font.BOLD, 15));
 
         nicknameTextField = new JTextField();
         nicknameTextField.setBounds(230, 95, 150, 25);
@@ -56,7 +56,7 @@ public class AddFriendPanelView extends AddFriendPanelTemplate implements Action
         JLabel descriptionLabel = new JLabel();
         descriptionLabel.setText("Description");
         descriptionLabel.setBounds(20, 120, 200, 30);
-        descriptionLabel.setFont(new Font(null, Font.PLAIN, 15));
+        descriptionLabel.setFont(new Font(null, Font.BOLD, 15));
 
         descriptionTextArea = new JTextArea(5, 5);
         descriptionTextArea.setFont(new Font(null, Font.PLAIN, 15));
@@ -66,9 +66,15 @@ public class AddFriendPanelView extends AddFriendPanelTemplate implements Action
         descriptionPane.setBounds(20, 150, 200, 70);
 
         addFriendButton = new JButton("Add friend");
-        addFriendButton.setBounds(70, 245, 100, 35);
+        addFriendButton.setBounds(150, 255, 100, 35);
         addFriendButton.setFocusable(false);
         addFriendButton.addActionListener(this);
+
+        errorLabel = new JLabel("error", SwingConstants.CENTER);
+        errorLabel.setBounds(20, 225, 360, 30);
+        errorLabel.setFont(new Font(null, Font.PLAIN, 12));
+        errorLabel.setForeground(Color.RED);
+        errorLabel.setVisible(false);
 
         this.setBackground(Color.WHITE);
         this.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
@@ -85,6 +91,7 @@ public class AddFriendPanelView extends AddFriendPanelTemplate implements Action
         this.add(descriptionLabel);
         this.add(descriptionPane);
         this.add(addFriendButton);
+        this.add(errorLabel);
 
         this.addMouseListener(new MouseAdapter() {
             @Override

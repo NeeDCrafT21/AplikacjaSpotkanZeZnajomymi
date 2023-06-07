@@ -35,4 +35,5 @@ public abstract class CreateMeetingPanelTemplate extends JPanel {
     protected CreateMeetingSelectPlaceScrollPaneView createMeetingSelectPlaceScrollPaneView;
     protected List<Friend> selectedFriends = new ArrayList<>();
     protected ExpMapMarker selectedPlace = null;
+    protected JLabel errorLabel;
 }

@@ -1,9 +1,12 @@
 package org.example.Frame.MainFrame;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import org.example.Models.Controllers;
 import org.example.Models.OSMMap;
 import org.example.Service.DBConnection;
+import org.example.Service.LocationsReverseService;
+import org.example.Service.LocationsSearchService;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
@@ -12,17 +15,21 @@ import java.awt.event.WindowEvent;
 public class MainFrameController {
     MainFrameView view;
     DBConnection dbConnection;
+    LocationsReverseService locationsReverseService;
+    LocationsSearchService locationsSearchService;
 
     public MainFrameController(MainFrameView view) {
         this.view = view;
 
-        view.map = new OSMMap();
+        locationsReverseService = new LocationsReverseService(new ObjectMapper());
+        locationsSearchService = new LocationsSearchService(new ObjectMapper());
         dbConnection = new DBConnection();
+        Controllers.mainFrameController = this;
+
+        view.map = new OSMMap();
         dbConnection.getMarkers(view.map);
         view.friends = dbConnection.getFriends();
         view.meetings = dbConnection.getMeetings();
-
-        Controllers.mainFrameController = this;
     }
 
     public void exitingApp(WindowEvent e) {

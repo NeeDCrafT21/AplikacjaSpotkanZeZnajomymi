@@ -26,6 +26,7 @@ public class AddFriendPanelController {
         view.nameTextField.setText("");
         view.nicknameTextField.setText("");
         view.descriptionTextArea.setText("");
+        view.errorLabel.setVisible(false);
     }
 
     public void buttonClicked(ActionEvent e) {
@@ -40,6 +41,8 @@ public class AddFriendPanelController {
             for (Friend friend : view.friends) {
                 if (Objects.equals(friend.getNickname(), newFriend.getNickname())) {
                     System.out.println("Nickname already in use, use a different one");
+                    view.errorLabel.setText("Nickname already in use, use a different one");
+                    view.errorLabel.setVisible(true);
                     return;
                 }
             }
@@ -49,6 +52,9 @@ public class AddFriendPanelController {
             view.setVisible(false);
             clearInfo();
             view.friendPanelView.getController().setupFriendInfo(newFriend);
+        } else {
+            view.errorLabel.setText("Missing friend's name and/or nickname");
+            view.errorLabel.setVisible(true);
         }
     }
 }

@@ -71,9 +71,15 @@ public class CreateMeetingPanelView extends CreateMeetingPanelTemplate implement
         minutesComboBox.setBounds(510, 410, 45, 30);
 
         createButton = new JButton("Create meeting");
-        createButton.setBounds(485, 595, 140, 45);
+        createButton.setBounds(490, 595, 140, 45);
         createButton.setFocusable(false);
         createButton.addActionListener(this);
+
+        errorLabel = new JLabel("error", SwingConstants.CENTER);
+        errorLabel.setBounds(430, 565, 260, 30);
+        errorLabel.setFont(new Font(null, Font.PLAIN, 12));
+        errorLabel.setForeground(Color.RED);
+        errorLabel.setVisible(false);
 
         this.setBackground(Color.WHITE);
         this.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
@@ -91,6 +97,7 @@ public class CreateMeetingPanelView extends CreateMeetingPanelTemplate implement
         this.add(timeColonLabel);
         this.add(minutesComboBox);
         this.add(createButton);
+        this.add(errorLabel);
 
         this.addMouseListener(new MouseAdapter() {
             @Override

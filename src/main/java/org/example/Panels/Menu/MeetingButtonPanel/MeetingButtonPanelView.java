@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import org.example.Models.Meeting;
@@ -20,7 +21,8 @@ public class MeetingButtonPanelView extends MeetingButtonPanelTemplate implement
 
         ImageIcon dateIcon = new ImageIcon("date_icon.png");
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        JLabel dateLabel = new JLabel(sdf.format(meeting.getMeetingDate()));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+        JLabel dateLabel = new JLabel(meeting.getMeetingDate().format(formatter));
         dateLabel.setBounds(10, 50, 150, 18);
         dateLabel.setIcon(dateIcon);
         dateLabel.setFont(new Font(null, Font.PLAIN, 12));
@@ -36,6 +38,10 @@ public class MeetingButtonPanelView extends MeetingButtonPanelTemplate implement
         this.setMaximumSize(this.getPreferredSize());
         this.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         this.setLayout(null);
+
+        if(meeting.getIsFinished()) {
+            this.setBackground(Color.gray);
+        }
 
         this.add(nameLabel);
         this.add(dateLabel);

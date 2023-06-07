@@ -3,6 +3,8 @@ package org.example.Service;
 import com.google.common.io.ByteSource;
 import java.io.*;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -149,9 +151,12 @@ public class DBConnection {
             Meeting meeting = new Meeting(
                     (List<Friend>) deSerializeObject(resultSet.getBinaryStream("attendingfriends")),
                     (MeetingExpMapMarker) deSerializeObject(resultSet.getBinaryStream("location")),
-                    resultSet.getDate("date"),
+                    resultSet.getDate("date").toLocalDate(),
                     resultSet.getTime("time").toLocalTime());
             meeting.setIsFinished(resultSet.getBoolean("finished"));
+            if(meeting.getMeetingDate().isBefore(LocalDate.now())) {
+                meeting.setIsFinished(true);
+            }
             meetings.add(meeting);
         }
 
@@ -171,6 +176,7 @@ public class DBConnection {
         resultSet.close();
 
         int newID = lastRowId + 1;
+        ZoneId zoneId = ZoneId.systemDefault();
 
         String query = "INSERT INTO meetings (idmeetings, attendingfriends, location, date, time, finished) VALUES (?, ?, ?, ?, ?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -178,7 +184,7 @@ public class DBConnection {
         preparedStatement.setInt(1, newID);
         preparedStatement.setBinaryStream(2, serializeObject(meeting.getAttendingFriends()));
         preparedStatement.setBinaryStream(3, serializeObject(meeting.getMeetingLocation()));
-        preparedStatement.setDate(4, new java.sql.Date(meeting.getMeetingDate().getTime()));
+        preparedStatement.setDate(4, new java.sql.Date(meeting.getMeetingDate().atStartOfDay(zoneId).toEpochSecond()));
         preparedStatement.setTime(5, Time.valueOf(meeting.getMeetingTime()));
         preparedStatement.setBoolean(6, meeting.getIsFinished());
 

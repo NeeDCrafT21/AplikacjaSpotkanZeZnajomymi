@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.util.Objects;
 import javax.swing.*;
 import lombok.AllArgsConstructor;
+import org.example.Models.Controllers;
 import org.example.Models.ExpMapMarker;
 import org.example.Models.LocationSearch;
 import org.example.Service.LocationsSearchService;
@@ -21,7 +22,7 @@ public class LocationSearchBarPanelController {
         SwingWorker<Void, Void> worker = new SwingWorker<>() {
             @Override
             protected Void doInBackground() {
-                LocationsSearchService locationsSearchService = new LocationsSearchService(new ObjectMapper());
+                LocationsSearchService locationsSearchService = Controllers.mainFrameController.getLocationsSearchService();
                 view.locationSearchList = locationsSearchService.getLocationsFromApi(location, 10);
                 return null;
             }

@@ -57,6 +57,12 @@ public class CreateMarkerPanelView extends CreateMarkerPanelTemplate implements 
         JScrollPane descriptionPane = new JScrollPane(descriptionTextArea);
         descriptionPane.setBounds(20, 210, 320, 150);
 
+        errorLabel = new JLabel("error", SwingConstants.CENTER);
+        errorLabel.setBounds(20, 560, 360, 30);
+        errorLabel.setFont(new Font(null, Font.PLAIN, 12));
+        errorLabel.setForeground(Color.RED);
+        errorLabel.setVisible(false);
+
         this.setBackground(Color.WHITE);
         this.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
         this.setBounds(10, 10, 400, 655);
@@ -69,6 +75,7 @@ public class CreateMarkerPanelView extends CreateMarkerPanelTemplate implements 
         this.add(nameTextField);
         this.add(descriptionLabel);
         this.add(descriptionPane);
+        this.add(errorLabel);
 
         this.setVisible(false);
 

@@ -1,6 +1,7 @@
 package org.example.Panels.Meetings.SelectPlaceButtonPanel;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.*;
@@ -21,6 +22,17 @@ public class SelectPlaceButtonPanelView extends SelectPlaceButtonPanelTemplate i
         nameLabel.setBackground(null);
         nameLabel.setLineWrap(true);
         nameLabel.setEditable(false);
+        nameLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                controller.mouseEntered(e);
+            }
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                controller.mouseClicked(e);
+            }
+
+        });
 
         //        ImageIcon profilePicture = new ImageIcon(friend.getProfilePicture().getScaledInstance(50, 50,
         // Image.SCALE_DEFAULT));

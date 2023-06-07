@@ -31,7 +31,7 @@ public class ExpMapMarker extends MapMarkerDot implements Serializable {
     public ExpMapMarker(String name, Coordinate coord) {
         super(name, coord);
 
-        LocationsReverseService locationsReverseService = new LocationsReverseService(new ObjectMapper());
+        LocationsReverseService locationsReverseService = Controllers.mainFrameController.getLocationsReverseService();
         String lat = String.valueOf(this.getCoordinate().getLat());
         String lon = String.valueOf(this.getCoordinate().getLon());
         location = locationsReverseService.getLocationFromCoordinates(lat, lon, "18");
