@@ -5,16 +5,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.List;
 import java.util.Properties;
 import javax.swing.*;
-import org.example.Models.Friend;
-import org.example.Models.Meeting;
-import org.example.Models.OSMMap;
+import javax.swing.border.BevelBorder;
+
 import org.example.Models.Views;
 import org.example.Panels.Meetings.CreateMeetingSelectFriendsScrollPane.CreateMeetingSelectFriendsScrollPaneView;
 import org.example.Panels.Meetings.CreateMeetingSelectPlaceScrollPane.CreateMeetingSelectPlaceScrollPaneView;
-import org.example.Service.DBConnection;
 import org.jdatepicker.impl.DateComponentFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
@@ -34,14 +31,36 @@ public class CreateMeetingPanelView extends CreateMeetingPanelTemplate implement
         closeButton.setFocusable(false);
         closeButton.addActionListener(this);
 
-        createMeetingSelectFriendsScrollPaneView = new CreateMeetingSelectFriendsScrollPaneView(friends, this);
+        createMeetingSelectFriendsScrollPaneView = new CreateMeetingSelectFriendsScrollPaneView(this);
         createMeetingSelectPlaceScrollPaneView =
                 new CreateMeetingSelectPlaceScrollPaneView(map.getMapMarkerList(), this);
 
+        placeNameLabel = new JLabel();
+        placeNameLabel.setBounds(440, 60, 240, 40);
+        placeNameLabel.setText("Name");
+        placeNameLabel.setBorder(new BevelBorder(BevelBorder.RAISED));
+        placeNameLabel.setFont(new Font(null, Font.BOLD, 20));
+        placeNameLabel.setHorizontalTextPosition(JLabel.CENTER);
+
+        placePictureLabel = new JLabel();
+        placePictureLabel.setBounds(430, 110, 255, 140);
+
+        placeAddressLabel = new JLabel();
+        placeAddressLabel.setText("Address");
+        placeAddressLabel.setBounds(440, 250, 140, 45);
+        placeAddressLabel.setFont(new Font(null, Font.BOLD, 15));
+
+        placeAddressTextArea = new JTextArea(null, 5, 5);
+        placeAddressTextArea.setBounds(440, 285, 240, 100);
+        placeAddressTextArea.setFont(new Font(null, Font.PLAIN, 12));
+        placeAddressTextArea.setLineWrap(true);
+        placeAddressTextArea.setEditable(false);
+        placeAddressTextArea.setBorder(null);
+
         JLabel dateLabel = new JLabel();
         dateLabel.setText("Meeting date:");
-        dateLabel.setBounds(440, 300, 140, 45);
-        dateLabel.setFont(new Font(null, Font.PLAIN, 15));
+        dateLabel.setBounds(440, 410, 140, 45);
+        dateLabel.setFont(new Font(null, Font.BOLD, 15));
 
         UtilDateModel model = new UtilDateModel();
         Properties p = new Properties();
@@ -50,25 +69,25 @@ public class CreateMeetingPanelView extends CreateMeetingPanelTemplate implement
         p.put("text.year", "Year");
         JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
         datePicker = new JDatePickerImpl(datePanel, new DateComponentFormatter());
-        datePicker.setBounds(440, 335, 160, 26);
+        datePicker.setBounds(440, 445, 160, 26);
         datePicker.setFont(new Font(null, Font.PLAIN, 20));
         datePicker.addActionListener(this);
 
         JLabel timeLabel = new JLabel();
         timeLabel.setText("Meeting time:");
-        timeLabel.setBounds(440, 370, 140, 45);
-        timeLabel.setFont(new Font(null, Font.PLAIN, 15));
+        timeLabel.setBounds(440, 470, 140, 45);
+        timeLabel.setFont(new Font(null, Font.BOLD, 15));
 
         hourComboBox = new JComboBox<>(hourList);
-        hourComboBox.setBounds(440, 410, 45, 30);
+        hourComboBox.setBounds(440, 510, 45, 30);
 
         JLabel timeColonLabel = new JLabel();
         timeColonLabel.setText(":");
-        timeColonLabel.setBounds(495, 408, 45, 30);
+        timeColonLabel.setBounds(495, 508, 45, 30);
         timeColonLabel.setFont(new Font(null, Font.BOLD, 18));
 
         minutesComboBox = new JComboBox<>(minutesList);
-        minutesComboBox.setBounds(510, 410, 45, 30);
+        minutesComboBox.setBounds(510, 510, 45, 30);
 
         createButton = new JButton("Create meeting");
         createButton.setBounds(490, 595, 140, 45);
@@ -90,6 +109,12 @@ public class CreateMeetingPanelView extends CreateMeetingPanelTemplate implement
         this.add(closeButton);
         this.add(createMeetingSelectFriendsScrollPaneView);
         this.add(createMeetingSelectPlaceScrollPaneView);
+
+        this.add(placeNameLabel);
+        this.add(placePictureLabel);
+        this.add(placeAddressLabel);
+        this.add(placeAddressTextArea);
+
         this.add(dateLabel);
         this.add(datePicker);
         this.add(timeLabel);

@@ -11,4 +11,5 @@ public abstract class FriendPanelTemplate extends JPanel {
     protected JTextArea descriptionTextArea;
     protected ImageIcon profilePicture;
     protected JLabel profilePictureLabel;
+    protected JLabel nicknameLabel;
 }

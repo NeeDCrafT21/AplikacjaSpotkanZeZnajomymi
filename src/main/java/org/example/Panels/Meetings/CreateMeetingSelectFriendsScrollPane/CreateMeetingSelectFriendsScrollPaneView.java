@@ -5,12 +5,12 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import org.example.Models.Friend;
+import org.example.Models.Views;
 import org.example.Panels.Meetings.CreateMeetingPanel.CreateMeetingPanelView;
 
 public class CreateMeetingSelectFriendsScrollPaneView extends CreateMeetingSelectFriendsScrollPaneTemplate {
-    public CreateMeetingSelectFriendsScrollPaneView(
-            List<Friend> friends, CreateMeetingPanelView createMeetingPanelView) {
-        this.friends = friends;
+    public CreateMeetingSelectFriendsScrollPaneView(CreateMeetingPanelView createMeetingPanelView) {
+        this.friends = Views.mainFrameView.getFriends();
         this.createMeetingPanelView = createMeetingPanelView;
         controller = new CreateMeetingSelectFriendsScrollPaneController(this);
 

@@ -11,7 +11,6 @@ import org.example.Models.Meeting;
 import org.example.Models.OSMMap;
 import org.example.Panels.Meetings.CreateMeetingSelectFriendsScrollPane.CreateMeetingSelectFriendsScrollPaneView;
 import org.example.Panels.Meetings.CreateMeetingSelectPlaceScrollPane.CreateMeetingSelectPlaceScrollPaneView;
-import org.example.Service.DBConnection;
 import org.jdatepicker.impl.JDatePickerImpl;
 
 @Getter
@@ -36,4 +35,8 @@ public abstract class CreateMeetingPanelTemplate extends JPanel {
     protected List<Friend> selectedFriends = new ArrayList<>();
     protected ExpMapMarker selectedPlace = null;
     protected JLabel errorLabel;
+    protected JLabel placeNameLabel;
+    protected JLabel placePictureLabel;
+    protected JLabel placeAddressLabel;
+    protected JTextArea placeAddressTextArea;
 }

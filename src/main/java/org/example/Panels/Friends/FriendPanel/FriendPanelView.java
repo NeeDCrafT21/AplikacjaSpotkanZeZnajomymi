@@ -24,7 +24,7 @@ public class FriendPanelView extends FriendPanelTemplate implements ActionListen
         JLabel descriptionLabel = new JLabel();
         descriptionLabel.setText("Description");
         descriptionLabel.setBounds(20, 65, 320, 30);
-        descriptionLabel.setFont(new Font(null, Font.PLAIN, 15));
+        descriptionLabel.setFont(new Font(null, Font.BOLD, 15));
 
         descriptionTextArea = new JTextArea(5, 5);
         descriptionTextArea.setFont(new Font(null, Font.PLAIN, 15));
@@ -37,6 +37,11 @@ public class FriendPanelView extends FriendPanelTemplate implements ActionListen
         profilePictureLabel = new JLabel();
         profilePictureLabel.setBounds(235, 95, 140, 140);
 
+        nicknameLabel = new JLabel();
+        nicknameLabel.setText("@nickname");
+        nicknameLabel.setBounds(235, 230, 140, 30);
+        nicknameLabel.setFont(new Font(null, Font.PLAIN, 12));
+
         this.setBackground(Color.WHITE);
         this.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
         this.setBounds(850, 10, 400, 300);
@@ -48,6 +53,7 @@ public class FriendPanelView extends FriendPanelTemplate implements ActionListen
         this.add(descriptionLabel);
         this.add(descriptionPane);
         this.add(profilePictureLabel);
+        this.add(nicknameLabel);
     }
 
     @Override

@@ -3,6 +3,7 @@ package org.example.Panels.Meetings.CreateMeetingSelectPlaceScrollPane;
 import java.awt.*;
 import javax.swing.*;
 import lombok.AllArgsConstructor;
+import org.example.Models.Controllers;
 import org.example.Models.ExpMapMarker;
 import org.example.Panels.Meetings.SelectPlaceButtonPanel.SelectPlaceButtonPanelView;
 
@@ -25,5 +26,8 @@ public class CreateMeetingSelectPlaceScrollPaneController {
 
     public void setSelectedPlace(ExpMapMarker selectedPlace) {
         view.createMeetingPanelView.setSelectedPlace(selectedPlace);
+        if(selectedPlace != null) {
+            Controllers.createMeetingPanelController.updatePlaceInfo(selectedPlace);
+        }
     }
 }

@@ -16,6 +16,7 @@ public class FriendPanelController {
         view.profilePicture =
                 new ImageIcon(friend.getProfilePicture().getScaledInstance(140, 140, Image.SCALE_DEFAULT));
         view.profilePictureLabel.setIcon(view.profilePicture);
+        view.nicknameLabel.setText("@" + friend.getNickname());
         view.setVisible(true);
     }
 

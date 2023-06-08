@@ -1,19 +1,25 @@
 package org.example.Panels.Meetings.CreateMeetingPanel;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
-import java.util.Collections;
 import java.util.Date;
-import lombok.AllArgsConstructor;
+
 import org.example.Models.Controllers;
+import org.example.Models.ExpMapMarker;
 import org.example.Models.Meeting;
 import org.example.Models.MeetingExpMapMarker;
 
-@AllArgsConstructor
+import javax.swing.*;
+
 public class CreateMeetingPanelController {
     CreateMeetingPanelView view;
+
+    public CreateMeetingPanelController(CreateMeetingPanelView view) {
+        this.view = view;
+        Controllers.createMeetingPanelController = this;
+    }
 
     public void clearPanelInfo() {
         view.createMeetingSelectFriendsScrollPaneView.getController().updateShowAddedFriends();
@@ -26,6 +32,14 @@ public class CreateMeetingPanelController {
         view.errorLabel.setVisible(false);
     }
 
+    public void updatePlaceInfo(ExpMapMarker marker) {
+        view.placeNameLabel.setText(marker.getName());
+        ImageIcon placePicture =
+                new ImageIcon(marker.getLocationPicture().getScaledInstance(255, 140, Image.SCALE_DEFAULT));
+        view.placePictureLabel.setIcon(placePicture);
+        view.placeAddressTextArea.setText(marker.getLocation().getDisplayName());
+    }
+
     public void buttonClicked(ActionEvent e) {
         if (e.getSource() == view.closeButton) {
             view.setVisible(false);
@@ -36,7 +50,7 @@ public class CreateMeetingPanelController {
             todaysDate.setMinutes(0);
             if (view.selectedFriends.isEmpty() || view.selectedPlace == null) {
                 System.out.println("Niepoprawne dane");
-                view.errorLabel.setText("Select friends and/or place");
+                view.errorLabel.setText("Select friends and/or meeting place");
                 view.errorLabel.setVisible(true);
             } else if (meetingDate == null || meetingDate.before(todaysDate)) {
                 System.out.println("Wybierz date pozniejsza niz dzisiejsza");
