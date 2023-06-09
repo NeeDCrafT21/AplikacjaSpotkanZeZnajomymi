@@ -4,6 +4,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+
+import org.example.Models.Controllers;
+import org.example.Models.Views;
 import org.example.Panels.Meetings.CreateMeetingPanel.CreateMeetingPanelView;
 import org.example.Panels.Menu.MenuPanel.MenuPanelView;
 
@@ -43,8 +46,10 @@ public class MenuButtonPanelView extends MenuButtonPanelTemplate implements Acti
         } else if (e.getSource() == showMeetingsButton) {
             this.setVisible(false);
             menuPanelView.getBackButton().setVisible(true);
-            menuPanelView.getAllMeetingsScrollPaneView().getController().UpdateShowAllMeetings();
-            menuPanelView.getAllMeetingsScrollPaneView().setVisible(true);
+            Controllers.allMeetingsScrollPaneController.UpdateShowAllMeetings();
+            Views.allMeetingsPanelView.setVisible(true);
+//            menuPanelView.getAllMeetingsScrollPaneView().getController().UpdateShowAllMeetings();
+//            menuPanelView.getAllMeetingsScrollPaneView().setVisible(true);
         }
     }
 }

@@ -9,8 +9,10 @@ import java.util.List;
 import javax.swing.*;
 import org.example.Models.Meeting;
 import org.example.Models.OSMMap;
+import org.example.Models.Views;
 import org.example.Panels.Markers.MarkerPanel.MarkerPanelView;
 import org.example.Panels.Meetings.CreateMeetingPanel.CreateMeetingPanelView;
+import org.example.Panels.Menu.AllMeetingsPanel.AllMeetingsPanelView;
 import org.example.Panels.Menu.AllMeetingsScrollPane.AllMeetingsScrollPaneView;
 import org.example.Panels.Menu.MenuButtonPanel.MenuButtonPanelView;
 import org.example.Panels.Menu.SavedMarkersScrollPane.SavedMarkersScrollPaneView;
@@ -27,10 +29,12 @@ public class MenuPanelView extends MenuPanelTemplate implements ActionListener {
         this.meetings = meetings;
 
         controller = new MenuPanelController(this);
+        Views.menuPanelView = this;
 
-        savedMarkersScrollPaneView = new SavedMarkersScrollPaneView(map, markerPanelView, this);
+        savedMarkersScrollPaneView = new SavedMarkersScrollPaneView(markerPanelView, this);
 
-        allMeetingsScrollPaneView = new AllMeetingsScrollPaneView(meetings);
+        //allMeetingsScrollPaneView = new AllMeetingsScrollPaneView();
+        allMeetingsPanelView = new AllMeetingsPanelView();
 
         ImageIcon closeIcon = new ImageIcon("close_icon.png");
         closeButton = new JButton();
@@ -57,7 +61,8 @@ public class MenuPanelView extends MenuPanelTemplate implements ActionListener {
         this.add(backButton);
         this.add(menuButtonPanelView);
         this.add(savedMarkersScrollPaneView);
-        this.add(allMeetingsScrollPaneView);
+        //this.add(allMeetingsScrollPaneView);
+        this.add(allMeetingsPanelView);
 
         this.setVisible(false);
 

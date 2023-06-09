@@ -9,7 +9,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Meeting {
+public class Meeting{
     private List<Friend> attendingFriends;
     private MeetingExpMapMarker meetingLocation;
     private LocalDate meetingDate;
