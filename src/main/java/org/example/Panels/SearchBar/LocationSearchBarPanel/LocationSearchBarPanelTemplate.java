@@ -11,7 +11,7 @@ import org.example.Panels.MapPanel.MapPanelView;
 
 @Getter
 @Setter
-public class LocationSearchBarPanelTemplate extends JPanel {
+public abstract class LocationSearchBarPanelTemplate extends JPanel {
     protected LocationSearchBarPanelController controller;
     protected MapPanelView mapPanelView;
     protected OSMMap map;

@@ -16,6 +16,7 @@ import org.example.Panels.MapPanel.MapPanelView;
 import org.example.Panels.Markers.CreateMarkerPanel.CreateMarkerPanelView;
 import org.example.Panels.Markers.MarkerPanel.MarkerPanelView;
 import org.example.Panels.Meetings.CreateMeetingPanel.CreateMeetingPanelView;
+import org.example.Panels.Meetings.MeetingPanel.MeetingPanelView;
 import org.example.Panels.Menu.MenuPanel.MenuPanelView;
 import org.example.Panels.SearchBar.LocationSearchBarPanel.LocationSearchBarPanelView;
 import org.example.Service.DBConnection;
@@ -37,6 +38,7 @@ public class MainFrameView extends MainFrameTemplate implements ActionListener {
         addFriendPanelView = new AddFriendPanelView(friendPanelView);
         friendsPanelView = new FriendsPanelView(friendPanelView, addFriendPanelView, friends);
         locationSearchBarPanelView = new LocationSearchBarPanelView(mapPanelView, map);
+        meetingPanelView = new MeetingPanelView();
 
         ImageIcon MFLogoImage = new ImageIcon("munefrakt_logo.png");
         JLabel MFLogo = new JLabel();
@@ -91,6 +93,7 @@ public class MainFrameView extends MainFrameTemplate implements ActionListener {
         layeredMainPane.add(addFriendPanelView, JLayeredPane.POPUP_LAYER);
         layeredMainPane.add(createMeetingPanelView, JLayeredPane.POPUP_LAYER);
         layeredMainPane.add(createMarkerPanelView, JLayeredPane.POPUP_LAYER);
+        layeredMainPane.add(meetingPanelView, JLayeredPane.POPUP_LAYER);
 
         this.setVisible(true);
         this.requestFocus();

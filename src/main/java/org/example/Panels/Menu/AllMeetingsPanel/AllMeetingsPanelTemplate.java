@@ -5,7 +5,7 @@ import org.example.Panels.Menu.SavedMarkersScrollPane.SavedMarkersScrollPaneView
 
 import javax.swing.*;
 
-public class AllMeetingsPanelTemplate extends JPanel {
+public abstract class AllMeetingsPanelTemplate extends JPanel {
     protected AllMeetingsPanelController controller;
     protected AllMeetingsScrollPaneView allMeetingsScrollPaneView;
     protected JButton sortByEarliestButton;

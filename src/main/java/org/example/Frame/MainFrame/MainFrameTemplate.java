@@ -12,6 +12,7 @@ import org.example.Panels.MapPanel.MapPanelView;
 import org.example.Panels.Markers.CreateMarkerPanel.CreateMarkerPanelView;
 import org.example.Panels.Markers.MarkerPanel.MarkerPanelView;
 import org.example.Panels.Meetings.CreateMeetingPanel.CreateMeetingPanelView;
+import org.example.Panels.Meetings.MeetingPanel.MeetingPanelView;
 import org.example.Panels.Menu.MenuPanel.MenuPanelView;
 import org.example.Panels.SearchBar.LocationSearchBarPanel.LocationSearchBarPanelView;
 import org.example.Service.DBConnection;
@@ -36,4 +37,5 @@ public abstract class MainFrameTemplate extends JFrame {
     protected LocationSearchBarPanelView locationSearchBarPanelView;
     protected List<Friend> friends;
     protected List<Meeting> meetings;
+    protected MeetingPanelView meetingPanelView;
 }

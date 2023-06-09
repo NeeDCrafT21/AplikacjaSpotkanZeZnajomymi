@@ -20,7 +20,7 @@ public class MeetingButtonPanelView extends MeetingButtonPanelTemplate implement
         nameLabel.setFont(new Font(null, Font.BOLD, 20));
 
         ImageIcon dateIcon = new ImageIcon("date_icon.png");
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        //SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
         JLabel dateLabel = new JLabel(meeting.getMeetingDate().format(formatter));
         dateLabel.setBounds(10, 50, 150, 18);
@@ -51,7 +51,9 @@ public class MeetingButtonPanelView extends MeetingButtonPanelTemplate implement
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {}
+    public void mouseClicked(MouseEvent e) {
+        controller.mouseClicked(e);
+    }
 
     @Override
     public void mouseEntered(MouseEvent e) {

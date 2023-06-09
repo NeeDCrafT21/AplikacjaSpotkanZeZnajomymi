@@ -15,7 +15,6 @@ public class MarkerPanelView extends MarkerPanelTemplate implements ActionListen
         controller = new MarkerPanelController(this);
 
         ImageIcon closeIcon = new ImageIcon("close_icon.png");
-
         closeMenuButton = new JButton();
         closeMenuButton.setBounds(360, 10, 30, 30);
         closeMenuButton.setIcon(closeIcon);
