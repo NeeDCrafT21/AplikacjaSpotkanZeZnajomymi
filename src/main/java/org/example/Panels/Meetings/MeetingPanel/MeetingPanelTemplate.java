@@ -1,5 +1,7 @@
 package org.example.Panels.Meetings.MeetingPanel;
 
+import org.example.Panels.Meetings.MeetingFriendsScrollPane.MeetingFriendsScrollPaneView;
+
 import javax.swing.*;
 
 public abstract class MeetingPanelTemplate extends JPanel {
@@ -11,6 +13,6 @@ public abstract class MeetingPanelTemplate extends JPanel {
     protected JTextArea locationAddressTextArea;
     protected JLabel meetingDateInfoLabel;
     protected JLabel meetingTimeInfoLabel;
-
+    protected MeetingFriendsScrollPaneView meetingFriendsScrollPaneView;
 
 }

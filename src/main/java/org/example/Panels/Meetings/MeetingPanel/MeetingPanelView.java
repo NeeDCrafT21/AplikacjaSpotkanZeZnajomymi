@@ -1,6 +1,7 @@
 package org.example.Panels.Meetings.MeetingPanel;
 
 import org.example.Models.Views;
+import org.example.Panels.Meetings.MeetingFriendsScrollPane.MeetingFriendsScrollPaneView;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -78,6 +79,8 @@ public class MeetingPanelView extends MeetingPanelTemplate implements ActionList
         friendsLabel.setBounds(20, 520, 320, 30);
         friendsLabel.setFont(new Font(null, Font.BOLD, 20));
 
+        meetingFriendsScrollPaneView = new MeetingFriendsScrollPaneView();
+
         this.setBackground(Color.WHITE);
         this.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
         this.setBounds(10, 10, 400, 655);
@@ -97,6 +100,7 @@ public class MeetingPanelView extends MeetingPanelTemplate implements ActionList
         this.add(meetingTimeLabel);
         this.add(meetingTimeInfoLabel);
         this.add(friendsLabel);
+        this.add(meetingFriendsScrollPaneView);
     }
 
     @Override

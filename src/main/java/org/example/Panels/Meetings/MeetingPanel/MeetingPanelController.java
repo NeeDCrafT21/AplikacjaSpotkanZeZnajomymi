@@ -3,6 +3,7 @@ package org.example.Panels.Meetings.MeetingPanel;
 import lombok.AllArgsConstructor;
 import org.example.Models.Controllers;
 import org.example.Models.Meeting;
+import org.example.Models.Views;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,5 +31,6 @@ public class MeetingPanelController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
         view.meetingDateInfoLabel.setText(meeting.getMeetingDate().format(formatter));
         view.meetingTimeInfoLabel.setText(meeting.getMeetingTime().toString());
+        Controllers.meetingFriendsScrollPaneController.updateFriendsList(meeting.getAttendingFriends());
     }
 }
