@@ -65,6 +65,15 @@ public class AddFriendPanelView extends AddFriendPanelTemplate implements Action
         JScrollPane descriptionPane = new JScrollPane(descriptionTextArea);
         descriptionPane.setBounds(20, 150, 200, 70);
 
+        JLabel addPictureLabel = new JLabel();
+        addPictureLabel.setText("Add picture URL");
+        addPictureLabel.setBounds(230, 120, 150, 30);
+        addPictureLabel.setFont(new Font(null, Font.BOLD, 15));
+
+        pictureTextField = new JTextField();
+        pictureTextField.setBounds(230, 150, 150, 25);
+        pictureTextField.setFont(new Font(null, Font.PLAIN, 15));
+
         addFriendButton = new JButton("Add friend");
         addFriendButton.setBounds(150, 255, 100, 35);
         addFriendButton.setFocusable(false);
@@ -90,6 +99,8 @@ public class AddFriendPanelView extends AddFriendPanelTemplate implements Action
         this.add(nicknameTextField);
         this.add(descriptionLabel);
         this.add(descriptionPane);
+        this.add(addPictureLabel);
+        this.add(pictureTextField);
         this.add(addFriendButton);
         this.add(errorLabel);
 

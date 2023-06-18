@@ -7,6 +7,7 @@ import java.util.Objects;
 import lombok.AllArgsConstructor;
 import org.example.Models.Controllers;
 import org.example.Models.Friend;
+import org.openstreetmap.josm.data.validation.routines.UrlValidator;
 
 public class AddFriendPanelController {
     AddFriendPanelView view;
@@ -26,6 +27,7 @@ public class AddFriendPanelController {
         view.nameTextField.setText("");
         view.nicknameTextField.setText("");
         view.descriptionTextArea.setText("");
+        view.pictureTextField.setText("");
         view.errorLabel.setVisible(false);
     }
 
@@ -35,7 +37,28 @@ public class AddFriendPanelController {
         } else if (e.getSource() == view.addFriendButton
                 && !Objects.equals(view.nameTextField.getText(), "")
                 && !Objects.equals(view.nicknameTextField.getText(), "")) {
-            Friend newFriend = new Friend(view.nicknameTextField.getText(), view.nameTextField.getText());
+            Friend newFriend;
+
+            if (!view.pictureTextField.getText().isEmpty()) {
+                UrlValidator urlValidator = new UrlValidator();
+                if (urlValidator.isValid(view.pictureTextField.getText())) {
+                    newFriend = new Friend(view.nicknameTextField.getText(), view.nameTextField.getText(), view.pictureTextField.getText());
+                    if (newFriend.getProfilePicture() == null) {
+                        view.errorLabel.setText("Invalid image URL");
+                        view.errorLabel.setVisible(true);
+                        return;
+                    } else {
+                        newFriend.setImageURLPath(view.pictureTextField.getText());
+                    }
+                } else {
+                    view.errorLabel.setText("Incorrect URL");
+                    view.errorLabel.setVisible(true);
+                    return;
+                }
+
+            } else {
+                newFriend = new Friend(view.nicknameTextField.getText(), view.nameTextField.getText());
+            }
             newFriend.setDescription(view.descriptionTextArea.getText());
 
             for (Friend friend : view.friends) {

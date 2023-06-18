@@ -4,12 +4,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-import org.example.Models.Controllers;
-import org.example.Models.ExpMapMarker;
-import org.example.Models.Meeting;
-import org.example.Models.MeetingExpMapMarker;
+import org.example.Models.*;
 
 import javax.swing.*;
 
@@ -62,12 +61,11 @@ public class CreateMeetingPanelController {
                 LocalTime newMeetingTime = LocalTime.parse(
                         view.hourComboBox.getSelectedItem() + ":" + view.minutesComboBox.getSelectedItem());
                 MeetingExpMapMarker meetingMarker = new MeetingExpMapMarker(view.selectedPlace.getName(), view.selectedPlace.getDescription(), view.selectedPlace.getLocation());
+                List<Friend> friends = new ArrayList<>(view.selectedFriends);
                 Meeting newMeeting =
-                        new Meeting(view.selectedFriends, meetingMarker, newMeetingDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), newMeetingTime);
-                view.meetings.add(newMeeting);
+                        new Meeting(friends, meetingMarker, newMeetingDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), newMeetingTime);
+                Views.mainFrameView.getMeetings().add(newMeeting);
                 Controllers.mainFrameController.getDbConnection().addMeeting(newMeeting);
-                newMeeting.printMeetingInfo();
-                clearPanelInfo();
                 view.setVisible(false);
             }
         }

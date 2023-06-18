@@ -4,6 +4,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.net.URL;
 import javax.imageio.ImageIO;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,8 +18,9 @@ public class Friend implements Serializable {
     private String nickname;
     private String description = "";
     private String defaultImagePath = "friend_default.png";
+    private String imageURLPath = null;
 
-    private transient  Image profilePicture;
+    private transient Image profilePicture;
 
     @SneakyThrows
     public Friend(String nickname, String name) {
@@ -27,8 +29,11 @@ public class Friend implements Serializable {
         profilePicture = ImageIO.read(new File(defaultImagePath));
     }
 
-    public Friend(String name, Image newProfilePicture) {
+    @SneakyThrows
+    public Friend(String nickname, String name, String imageURLPath) {
+        this.nickname = nickname;
         this.name = name;
-        profilePicture = newProfilePicture;
+        URL imageURL = new URL(imageURLPath);
+        profilePicture = ImageIO.read(imageURL);
     }
 }

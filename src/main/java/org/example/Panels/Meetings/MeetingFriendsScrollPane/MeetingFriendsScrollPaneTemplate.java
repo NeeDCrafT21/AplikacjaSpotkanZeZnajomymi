@@ -14,6 +14,7 @@ public class MeetingFriendsScrollPaneTemplate extends JScrollPane {
     protected JPanel friendsPanel;
 
     protected void showFriends(List<Friend> friends) {
+        System.out.println(friends);
         for (Friend friend : friends) {
             MeetingFriendButtonPanelView friendButton =
                     new MeetingFriendButtonPanelView(friend);
