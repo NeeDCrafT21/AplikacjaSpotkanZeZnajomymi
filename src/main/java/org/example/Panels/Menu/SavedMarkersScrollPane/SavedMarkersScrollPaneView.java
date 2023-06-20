@@ -4,20 +4,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-import javax.swing.text.View;
-
-import org.example.Models.OSMMap;
 import org.example.Models.Views;
-import org.example.Panels.Markers.MarkerPanel.MarkerPanelView;
-import org.example.Panels.Menu.MenuPanel.MenuPanelView;
 
 public class SavedMarkersScrollPaneView extends SavedMarkersScrollPaneTemplate implements ActionListener {
 
-    public SavedMarkersScrollPaneView(MarkerPanelView markerPanelView, MenuPanelView menuPanel) {
+    public SavedMarkersScrollPaneView() {
         this.map = Views.mainFrameView.getMap();
-        this.markerPanelView = markerPanelView;
-        this.menuPanel = menuPanel;
-
+        this.markerPanelView = Views.markerPanelView;
+        this.menuPanel = Views.menuPanelView;
         controller = new SavedMarkersScrollPaneController(this);
 
         savedMarkersPanel = new JPanel();

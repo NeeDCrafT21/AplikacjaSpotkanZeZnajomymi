@@ -2,11 +2,7 @@ package org.example.Panels.MapPanel;
 
 import java.awt.event.*;
 import javax.swing.*;
-import org.example.Models.OSMMap;
 import org.example.Models.Views;
-import org.example.Panels.Markers.CreateMarkerPanel.CreateMarkerPanelView;
-import org.example.Panels.Markers.MarkerPanel.MarkerPanelView;
-import org.example.Panels.Menu.MenuPanel.MenuPanelView;
 
 public class MapPanelView extends MapPanelTemplate implements ActionListener {
     public MapPanelView() {
@@ -15,6 +11,7 @@ public class MapPanelView extends MapPanelTemplate implements ActionListener {
         this.menuPanelView = Views.mainFrameView.getMenuPanelView();
         this.createMarkerPanelView = Views.mainFrameView.getCreateMarkerPanelView();
         controller = new MapPanelController(this);
+        Views.mapPanelView = this;
 
         addMarkerPopupMenu = new JPopupMenu();
         placeMarkerPMItem = new JMenuItem("Place marker");

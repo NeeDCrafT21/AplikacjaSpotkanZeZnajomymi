@@ -5,14 +5,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
+import org.example.Models.Views;
 
 public class MarkerPanelView extends MarkerPanelTemplate implements ActionListener {
     public MarkerPanelView() {
         controller = new MarkerPanelController(this);
+        Views.markerPanelView = this;
 
         ImageIcon closeIcon = new ImageIcon("close_icon.png");
         closeMenuButton = new JButton();

@@ -4,17 +4,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-
 import org.example.Models.Controllers;
 import org.example.Models.Views;
-import org.example.Panels.Meetings.CreateMeetingPanel.CreateMeetingPanelView;
-import org.example.Panels.Menu.MenuPanel.MenuPanelView;
 
 public class MenuButtonPanelView extends MenuButtonPanelTemplate implements ActionListener {
 
-    public MenuButtonPanelView(MenuPanelView menuPanelView, CreateMeetingPanelView createMeetingPanelView) {
-        this.menuPanelView = menuPanelView;
-        this.createMeetingPanelView = createMeetingPanelView;
+    public MenuButtonPanelView() {
+        this.menuPanelView = Views.menuPanelView;
+        this.createMeetingPanelView = Views.createMeetingPanelView;
 
         openSavedMarkersButton = initButton("Save markers");
         createMeetingButton = initButton("Create meeting");
@@ -48,8 +45,8 @@ public class MenuButtonPanelView extends MenuButtonPanelTemplate implements Acti
             menuPanelView.getBackButton().setVisible(true);
             Controllers.allMeetingsScrollPaneController.UpdateShowAllMeetings();
             Views.allMeetingsPanelView.setVisible(true);
-//            menuPanelView.getAllMeetingsScrollPaneView().getController().UpdateShowAllMeetings();
-//            menuPanelView.getAllMeetingsScrollPaneView().setVisible(true);
+            //            menuPanelView.getAllMeetingsScrollPaneView().getController().UpdateShowAllMeetings();
+            //            menuPanelView.getAllMeetingsScrollPaneView().setVisible(true);
         }
     }
 }

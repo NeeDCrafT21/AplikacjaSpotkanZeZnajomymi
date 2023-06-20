@@ -5,20 +5,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.List;
 import javax.swing.*;
-import org.example.Models.Friend;
-import org.example.Panels.Friends.AddFriendPanel.AddFriendPanelView;
+import org.example.Models.Views;
 import org.example.Panels.Friends.AddedFriendsScrollPane.AddedFriendsScrollPaneView;
-import org.example.Panels.Friends.FriendPanel.FriendPanelView;
 
 public class FriendsPanelView extends FriendsPanelTemplate implements ActionListener {
-    public FriendsPanelView(
-            FriendPanelView friendPanelView, AddFriendPanelView addFriendPanelView, List<Friend> friends) {
-        this.friendPanelView = friendPanelView;
-        this.addFriendPanelView = addFriendPanelView;
-        this.friends = friends;
+    public FriendsPanelView() {
+        this.friendPanelView = Views.friendPanelView;
+        this.addFriendPanelView = Views.addFriendPanelView;
+        this.friends = Views.mainFrameView.getFriends();
         controller = new FriendsPanelController(this);
+        Views.friendsPanelView = this;
 
         ImageIcon closeIcon = new ImageIcon("close_icon.png");
         closeButton = new JButton();

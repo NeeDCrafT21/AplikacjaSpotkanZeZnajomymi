@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
+import org.example.Models.Views;
 
 public class FriendPanelView extends FriendPanelTemplate implements ActionListener {
     public FriendPanelView() {
@@ -15,6 +16,7 @@ public class FriendPanelView extends FriendPanelTemplate implements ActionListen
         closeButton.setFocusable(false);
         closeButton.addActionListener(this);
         controller = new FriendPanelController(this);
+        Views.friendPanelView = this;
 
         titleLabel = new JLabel();
         titleLabel.setBounds(60, 10, 320, 50);
@@ -29,7 +31,6 @@ public class FriendPanelView extends FriendPanelTemplate implements ActionListen
         descriptionTextArea = new JTextArea(5, 5);
         descriptionTextArea.setFont(new Font(null, Font.PLAIN, 15));
         descriptionTextArea.setLineWrap(true);
-        //        descriptionTextArea.setEditable(false);
 
         JScrollPane descriptionPane = new JScrollPane(descriptionTextArea);
         descriptionPane.setBounds(20, 95, 200, 180);

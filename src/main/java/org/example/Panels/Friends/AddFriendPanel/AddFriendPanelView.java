@@ -2,19 +2,16 @@ package org.example.Panels.Friends.AddFriendPanel;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.List;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
-import org.example.Models.Friend;
 import org.example.Models.Views;
-import org.example.Panels.Friends.FriendPanel.FriendPanelView;
-import org.example.Service.DBConnection;
 
 public class AddFriendPanelView extends AddFriendPanelTemplate implements ActionListener {
-    public AddFriendPanelView(FriendPanelView friendPanelView) {
-        this.friendPanelView = friendPanelView;
+    public AddFriendPanelView() {
+        this.friendPanelView = Views.friendPanelView;
         this.friends = Views.mainFrameView.getFriends();
         controller = new AddFriendPanelController(this);
+        Views.addFriendPanelView = this;
 
         ImageIcon closeIcon = new ImageIcon("close_icon.png");
         closeButton = new JButton();

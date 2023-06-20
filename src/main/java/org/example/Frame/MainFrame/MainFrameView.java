@@ -1,13 +1,7 @@
 package org.example.Frame.MainFrame;
 
 import java.awt.event.*;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.*;
-import org.example.Models.Friend;
-import org.example.Models.Meeting;
-import org.example.Models.OSMMap;
 import org.example.Models.Views;
 import org.example.Panels.Friends.AddFriendPanel.AddFriendPanelView;
 import org.example.Panels.Friends.FriendPanel.FriendPanelView;
@@ -19,25 +13,21 @@ import org.example.Panels.Meetings.CreateMeetingPanel.CreateMeetingPanelView;
 import org.example.Panels.Meetings.MeetingPanel.MeetingPanelView;
 import org.example.Panels.Menu.MenuPanel.MenuPanelView;
 import org.example.Panels.SearchBar.LocationSearchBarPanel.LocationSearchBarPanelView;
-import org.example.Service.DBConnection;
 
 public class MainFrameView extends MainFrameTemplate implements ActionListener {
     public MainFrameView() {
         controller = new MainFrameController(this);
         Views.mainFrameView = this;
 
-        // tymczasowe
-//        friends.add(new Friend("greg", "Grzegorz Brzeczyszczykiewicz"));
-
         createMarkerPanelView = new CreateMarkerPanelView();
         createMeetingPanelView = new CreateMeetingPanelView();
         markerPanelView = new MarkerPanelView();
-        menuPanelView = new MenuPanelView(map, markerPanelView, createMeetingPanelView, meetings);
+        menuPanelView = new MenuPanelView();
         mapPanelView = new MapPanelView();
         friendPanelView = new FriendPanelView();
-        addFriendPanelView = new AddFriendPanelView(friendPanelView);
-        friendsPanelView = new FriendsPanelView(friendPanelView, addFriendPanelView, friends);
-        locationSearchBarPanelView = new LocationSearchBarPanelView(mapPanelView, map);
+        addFriendPanelView = new AddFriendPanelView();
+        friendsPanelView = new FriendsPanelView();
+        locationSearchBarPanelView = new LocationSearchBarPanelView();
         meetingPanelView = new MeetingPanelView();
 
         ImageIcon MFLogoImage = new ImageIcon("munefrakt_logo.png");
@@ -56,13 +46,11 @@ public class MainFrameView extends MainFrameTemplate implements ActionListener {
         menuButton = new JButton();
         menuButton.setBounds(20, 20, 50, 50);
         menuButton.setIcon(menuIcon);
-        // menuButton.setFocusable(false);
         menuButton.addActionListener(this);
 
         friendsButton = new JButton();
         friendsButton.setBounds(1195, 20, 50, 50);
         friendsButton.setIcon(friendsIcon);
-        // friendsButton.setFocusable(false);
         friendsButton.addActionListener(this);
 
         ImageIcon appIcon = new ImageIcon("grupa_badawcza.png");

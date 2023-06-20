@@ -4,14 +4,13 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
-import org.example.Models.OSMMap;
-import org.example.Panels.MapPanel.MapPanelView;
+import org.example.Models.Views;
 
 public class LocationSearchBarPanelView extends LocationSearchBarPanelTemplate
         implements ActionListener, FocusListener {
-    public LocationSearchBarPanelView(MapPanelView mapPanelView, OSMMap map) {
-        this.mapPanelView = mapPanelView;
-        this.map = map;
+    public LocationSearchBarPanelView() {
+        this.mapPanelView = Views.mapPanelView;
+        this.map = Views.mainFrameView.getMap();
         controller = new LocationSearchBarPanelController(this);
 
         locationSearchList = new ArrayList<>();

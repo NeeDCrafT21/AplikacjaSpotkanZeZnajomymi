@@ -7,9 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
-import org.example.Models.OSMMap;
 import org.example.Models.Views;
-import org.example.Service.DBConnection;
 
 public class CreateMarkerPanelView extends CreateMarkerPanelTemplate implements ActionListener {
 
@@ -34,7 +32,6 @@ public class CreateMarkerPanelView extends CreateMarkerPanelTemplate implements 
         titleLabel.setBounds(20, 20, 320, 50);
         titleLabel.setBorder(new BevelBorder(BevelBorder.RAISED));
         titleLabel.setFont(new Font(null, Font.BOLD, 25));
-        // titleLabel.setHorizontalTextPosition(JLabel.CENTER);
 
         JLabel nameLabel = new JLabel();
         nameLabel.setText("Name");

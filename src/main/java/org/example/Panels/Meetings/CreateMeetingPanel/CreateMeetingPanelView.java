@@ -8,7 +8,6 @@ import java.awt.event.MouseEvent;
 import java.util.Properties;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
-
 import org.example.Models.Views;
 import org.example.Panels.Meetings.CreateMeetingSelectFriendsScrollPane.CreateMeetingSelectFriendsScrollPaneView;
 import org.example.Panels.Meetings.CreateMeetingSelectPlaceScrollPane.CreateMeetingSelectPlaceScrollPaneView;
@@ -23,6 +22,7 @@ public class CreateMeetingPanelView extends CreateMeetingPanelTemplate implement
         this.friends = Views.mainFrameView.getFriends();
         this.meetings = Views.mainFrameView.getMeetings();
         controller = new CreateMeetingPanelController(this);
+        Views.createMeetingPanelView = this;
 
         ImageIcon closeIcon = new ImageIcon("close_icon.png");
         closeButton = new JButton();
