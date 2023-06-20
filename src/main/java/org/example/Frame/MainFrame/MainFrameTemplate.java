@@ -1,5 +1,6 @@
 package org.example.Frame.MainFrame;
 
+import java.util.List;
 import javax.swing.*;
 import lombok.Getter;
 import org.example.Models.Friend;
@@ -15,9 +16,6 @@ import org.example.Panels.Meetings.CreateMeetingPanel.CreateMeetingPanelView;
 import org.example.Panels.Meetings.MeetingPanel.MeetingPanelView;
 import org.example.Panels.Menu.MenuPanel.MenuPanelView;
 import org.example.Panels.SearchBar.LocationSearchBarPanel.LocationSearchBarPanelView;
-import org.example.Service.DBConnection;
-
-import java.util.List;
 
 @Getter
 public abstract class MainFrameTemplate extends JFrame {

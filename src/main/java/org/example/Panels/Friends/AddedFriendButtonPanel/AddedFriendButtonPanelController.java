@@ -1,14 +1,12 @@
 package org.example.Panels.Friends.AddedFriendButtonPanel;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import lombok.AllArgsConstructor;
 import org.example.Models.Controllers;
 import org.example.Models.Views;
-import org.example.Panels.Friends.FriendsPanel.FriendsPanelView;
 
 @AllArgsConstructor
 public class AddedFriendButtonPanelController {
@@ -42,5 +40,4 @@ public class AddedFriendButtonPanelController {
             Controllers.mainFrameController.getDbConnection().deleteFriend(view.friend);
         }
     }
-
 }

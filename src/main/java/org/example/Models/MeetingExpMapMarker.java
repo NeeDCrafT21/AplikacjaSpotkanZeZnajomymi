@@ -1,13 +1,9 @@
 package org.example.Models;
 
+import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.SneakyThrows;
-
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.io.File;
-import java.io.Serializable;
 
 @Getter
 @Setter

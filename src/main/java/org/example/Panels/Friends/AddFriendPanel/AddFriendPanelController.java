@@ -2,9 +2,7 @@ package org.example.Panels.Friends.AddFriendPanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
-import java.io.IOException;
 import java.util.Objects;
-import lombok.AllArgsConstructor;
 import org.example.Models.Controllers;
 import org.example.Models.Friend;
 import org.openstreetmap.josm.data.validation.routines.UrlValidator;
@@ -18,8 +16,10 @@ public class AddFriendPanelController {
     }
 
     public void focusLost(FocusEvent e) {
-        if(!view.nameTextField.getText().equals("") && view.nicknameTextField.getText().equals("")) {
-            view.nicknameTextField.setText(view.nameTextField.getText().toLowerCase().replace("\s", ""));
+        if (!view.nameTextField.getText().equals("")
+                && view.nicknameTextField.getText().equals("")) {
+            view.nicknameTextField.setText(
+                    view.nameTextField.getText().toLowerCase().replace("\s", ""));
         }
     }
 
@@ -42,7 +42,10 @@ public class AddFriendPanelController {
             if (!view.pictureTextField.getText().isEmpty()) {
                 UrlValidator urlValidator = new UrlValidator();
                 if (urlValidator.isValid(view.pictureTextField.getText())) {
-                    newFriend = new Friend(view.nicknameTextField.getText(), view.nameTextField.getText(), view.pictureTextField.getText());
+                    newFriend = new Friend(
+                            view.nicknameTextField.getText(),
+                            view.nameTextField.getText(),
+                            view.pictureTextField.getText());
                     if (newFriend.getProfilePicture() == null) {
                         view.errorLabel.setText("Invalid image URL");
                         view.errorLabel.setVisible(true);

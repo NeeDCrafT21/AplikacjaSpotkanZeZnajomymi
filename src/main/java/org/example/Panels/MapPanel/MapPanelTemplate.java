@@ -1,6 +1,5 @@
 package org.example.Panels.MapPanel;
 
-import java.awt.event.MouseAdapter;
 import javax.swing.*;
 import lombok.Getter;
 import org.example.Models.ExpMapMarker;

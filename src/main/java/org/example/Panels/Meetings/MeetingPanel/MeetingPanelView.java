@@ -1,13 +1,12 @@
 package org.example.Panels.Meetings.MeetingPanel;
 
-import org.example.Models.Views;
-import org.example.Panels.Meetings.MeetingFriendsScrollPane.MeetingFriendsScrollPaneView;
-
-import javax.swing.*;
-import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.*;
+import javax.swing.border.BevelBorder;
+import org.example.Models.Views;
+import org.example.Panels.Meetings.MeetingFriendsScrollPane.MeetingFriendsScrollPaneView;
 
 public class MeetingPanelView extends MeetingPanelTemplate implements ActionListener {
     public MeetingPanelView() {

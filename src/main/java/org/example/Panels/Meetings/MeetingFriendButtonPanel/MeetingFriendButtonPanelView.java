@@ -1,14 +1,12 @@
 package org.example.Panels.Meetings.MeetingFriendButtonPanel;
 
-import org.example.Models.Friend;
-import org.example.Panels.Meetings.SelectFriendButtonPanel.SelectFriendButtonPanelController;
-
-import javax.swing.*;
-import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.*;
+import javax.swing.border.BevelBorder;
+import org.example.Models.Friend;
 
 public class MeetingFriendButtonPanelView extends MeetingFriendButtonPanelTemplate implements MouseListener {
     public MeetingFriendButtonPanelView(Friend friend) {
@@ -46,19 +44,13 @@ public class MeetingFriendButtonPanelView extends MeetingFriendButtonPanelTempla
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
+    public void mouseClicked(MouseEvent e) {}
 
     @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
+    public void mousePressed(MouseEvent e) {}
 
     @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
+    public void mouseReleased(MouseEvent e) {}
 
     @Override
     public void mouseEntered(MouseEvent e) {

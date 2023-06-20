@@ -2,10 +2,9 @@ package org.example.Panels.Markers.MarkerPanel;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import javax.swing.*;
 import lombok.AllArgsConstructor;
 import org.example.Models.ExpMapMarker;
-
-import javax.swing.*;
 
 @AllArgsConstructor
 public class MarkerPanelController {

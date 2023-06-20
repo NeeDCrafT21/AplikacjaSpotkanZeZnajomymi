@@ -4,7 +4,6 @@ import javax.swing.*;
 import lombok.Getter;
 import org.example.Models.ExpMapMarker;
 import org.example.Models.OSMMap;
-import org.example.Service.DBConnection;
 import org.openstreetmap.gui.jmapviewer.interfaces.ICoordinate;
 
 @Getter

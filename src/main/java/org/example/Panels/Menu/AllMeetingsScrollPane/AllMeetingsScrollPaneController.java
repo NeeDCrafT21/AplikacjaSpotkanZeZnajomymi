@@ -1,6 +1,5 @@
 package org.example.Panels.Menu.AllMeetingsScrollPane;
 
-import lombok.AllArgsConstructor;
 import org.example.Models.Controllers;
 
 public class AllMeetingsScrollPaneController {

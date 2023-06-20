@@ -1,10 +1,8 @@
 package org.example.Panels.Meetings.MeetingFriendsScrollPane;
 
-import lombok.AllArgsConstructor;
+import java.util.List;
 import org.example.Models.Controllers;
 import org.example.Models.Friend;
-
-import java.util.List;
 
 public class MeetingFriendsScrollPaneController {
     MeetingFriendsScrollPaneView view;

@@ -1,10 +1,8 @@
 package org.example.Panels.Meetings.CreateMeetingSelectFriendsScrollPane;
 
 import java.awt.*;
-import java.util.List;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
-import org.example.Models.Friend;
 import org.example.Models.Views;
 import org.example.Panels.Meetings.CreateMeetingPanel.CreateMeetingPanelView;
 

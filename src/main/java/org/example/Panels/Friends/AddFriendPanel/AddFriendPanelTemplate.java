@@ -5,7 +5,6 @@ import javax.swing.*;
 import lombok.Getter;
 import org.example.Models.Friend;
 import org.example.Panels.Friends.FriendPanel.FriendPanelView;
-import org.example.Service.DBConnection;
 
 @Getter
 public abstract class AddFriendPanelTemplate extends JPanel {

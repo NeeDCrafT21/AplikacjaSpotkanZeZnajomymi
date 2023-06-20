@@ -8,7 +8,8 @@ import org.example.Models.Friend;
 import org.example.Panels.Friends.FriendPanel.FriendPanelView;
 import org.example.Panels.Friends.FriendsPanel.FriendsPanelView;
 
-public class AddedFriendButtonPanelView extends AddedFriendButtonPanelTemplate implements MouseListener, ActionListener {
+public class AddedFriendButtonPanelView extends AddedFriendButtonPanelTemplate
+        implements MouseListener, ActionListener {
     public AddedFriendButtonPanelView(
             FriendsPanelView friendsPanelView, FriendPanelView friendPanelView, Friend friend) {
         this.friendPanelView = friendPanelView;
@@ -28,13 +29,12 @@ public class AddedFriendButtonPanelView extends AddedFriendButtonPanelTemplate i
             public void mouseEntered(MouseEvent e) {
                 controller.panelElementMouseEntered(e);
             }
+
             @Override
             public void mouseClicked(MouseEvent e) {
                 controller.mouseClicked(e);
             }
-
         });
-
 
         ImageIcon profilePicture =
                 new ImageIcon(friend.getProfilePicture().getScaledInstance(50, 50, Image.SCALE_DEFAULT));

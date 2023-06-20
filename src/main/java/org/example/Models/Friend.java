@@ -2,7 +2,6 @@ package org.example.Models;
 
 import java.awt.*;
 import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
 import javax.imageio.ImageIO;

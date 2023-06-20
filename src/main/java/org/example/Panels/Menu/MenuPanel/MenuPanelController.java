@@ -1,7 +1,6 @@
 package org.example.Panels.Menu.MenuPanel;
 
 import java.awt.event.ActionEvent;
-import lombok.AllArgsConstructor;
 import org.example.Models.Controllers;
 import org.example.Panels.Menu.SavedMarkersScrollPane.SavedMarkersScrollPaneView;
 

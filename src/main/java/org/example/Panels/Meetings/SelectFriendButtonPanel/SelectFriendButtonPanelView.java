@@ -27,11 +27,11 @@ public class SelectFriendButtonPanelView extends SelectFriendButtonPanelTemplate
             public void mouseEntered(MouseEvent e) {
                 controller.mouseEntered(e);
             }
+
             @Override
             public void mouseClicked(MouseEvent e) {
                 controller.mouseClicked(e);
             }
-
         });
 
         ImageIcon profilePicture =

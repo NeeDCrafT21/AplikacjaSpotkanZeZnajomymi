@@ -68,8 +68,7 @@ public class MapPanelController {
         } else if (SwingUtilities.isLeftMouseButton(e) && isMarkerClicked(view.markerPosition)) {
             if (view.clickedMarker.isCreated()) {
                 view.editMarkerPopupMenu.show(view.map, e.getX(), e.getY());
-            }
-            else if (view.clickedMarker.isTemp()) {
+            } else if (view.clickedMarker.isTemp()) {
                 view.addMarkerPopupMenu.show(view.map, e.getX(), e.getY());
             }
         }

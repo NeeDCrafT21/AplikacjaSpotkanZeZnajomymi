@@ -1,9 +1,7 @@
 package org.example.Panels.Menu.AllMeetingsPanel;
 
-import org.example.Panels.Menu.AllMeetingsScrollPane.AllMeetingsScrollPaneView;
-import org.example.Panels.Menu.SavedMarkersScrollPane.SavedMarkersScrollPaneView;
-
 import javax.swing.*;
+import org.example.Panels.Menu.AllMeetingsScrollPane.AllMeetingsScrollPaneView;
 
 public abstract class AllMeetingsPanelTemplate extends JPanel {
     protected AllMeetingsPanelController controller;

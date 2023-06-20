@@ -1,6 +1,5 @@
 package org.example.Panels.SearchBar.LocationSearchBarPanel;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
@@ -22,7 +21,8 @@ public class LocationSearchBarPanelController {
         SwingWorker<Void, Void> worker = new SwingWorker<>() {
             @Override
             protected Void doInBackground() {
-                LocationsSearchService locationsSearchService = Controllers.mainFrameController.getLocationsSearchService();
+                LocationsSearchService locationsSearchService =
+                        Controllers.mainFrameController.getLocationsSearchService();
                 view.locationSearchList = locationsSearchService.getLocationsFromApi(location, 10);
                 return null;
             }
@@ -55,7 +55,7 @@ public class LocationSearchBarPanelController {
     private void setTempMarker(Coordinate coordinate) {
         view.tempMarker = new ExpMapMarker("Marker", coordinate);
         view.tempMarker.setTemp(true);
-        //view.tempMarker.setColor(Color.RED);
+        // view.tempMarker.setColor(Color.RED);
         view.tempMarker.setBackColor(Color.RED);
         view.map.addMapMarker(view.tempMarker);
     }

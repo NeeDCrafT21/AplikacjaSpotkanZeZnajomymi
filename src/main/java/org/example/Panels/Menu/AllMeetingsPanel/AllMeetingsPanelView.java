@@ -1,12 +1,11 @@
 package org.example.Panels.Menu.AllMeetingsPanel;
 
-import org.example.Models.Views;
-import org.example.Panels.Menu.AllMeetingsScrollPane.AllMeetingsScrollPaneView;
-
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.*;
+import org.example.Models.Views;
+import org.example.Panels.Menu.AllMeetingsScrollPane.AllMeetingsScrollPaneView;
 
 public class AllMeetingsPanelView extends AllMeetingsPanelTemplate implements ActionListener {
     public AllMeetingsPanelView() {
@@ -38,7 +37,6 @@ public class AllMeetingsPanelView extends AllMeetingsPanelTemplate implements Ac
         this.add(sortByEarliestButton);
         this.add(sortByLatestButton);
         this.add(allMeetingsScrollPaneView);
-
     }
 
     @Override

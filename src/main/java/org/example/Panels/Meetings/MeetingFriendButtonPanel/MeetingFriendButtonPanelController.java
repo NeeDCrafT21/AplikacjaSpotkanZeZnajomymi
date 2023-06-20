@@ -1,10 +1,9 @@
 package org.example.Panels.Meetings.MeetingFriendButtonPanel;
 
-import lombok.AllArgsConstructor;
-
+import java.awt.event.MouseEvent;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
-import java.awt.event.MouseEvent;
+import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class MeetingFriendButtonPanelController {
@@ -17,5 +16,4 @@ public class MeetingFriendButtonPanelController {
     public void mouseExited(MouseEvent e) {
         view.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
     }
-
 }

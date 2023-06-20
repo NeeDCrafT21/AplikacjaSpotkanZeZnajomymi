@@ -27,11 +27,11 @@ public class SelectPlaceButtonPanelView extends SelectPlaceButtonPanelTemplate i
             public void mouseEntered(MouseEvent e) {
                 controller.mouseEntered(e);
             }
+
             @Override
             public void mouseClicked(MouseEvent e) {
                 controller.mouseClicked(e);
             }
-
         });
 
         //        ImageIcon profilePicture = new ImageIcon(friend.getProfilePicture().getScaledInstance(50, 50,

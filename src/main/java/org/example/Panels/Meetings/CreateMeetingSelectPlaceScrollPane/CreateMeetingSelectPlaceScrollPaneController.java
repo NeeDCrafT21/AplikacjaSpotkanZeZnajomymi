@@ -26,7 +26,7 @@ public class CreateMeetingSelectPlaceScrollPaneController {
 
     public void setSelectedPlace(ExpMapMarker selectedPlace) {
         view.createMeetingPanelView.setSelectedPlace(selectedPlace);
-        if(selectedPlace != null) {
+        if (selectedPlace != null) {
             Controllers.createMeetingPanelController.updatePlaceInfo(selectedPlace);
         }
     }

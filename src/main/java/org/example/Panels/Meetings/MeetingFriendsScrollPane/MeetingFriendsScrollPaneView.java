@@ -1,11 +1,7 @@
 package org.example.Panels.Meetings.MeetingFriendsScrollPane;
 
-import org.example.Models.Friend;
-
-import javax.swing.*;
-import javax.swing.border.EtchedBorder;
 import java.awt.*;
-import java.util.List;
+import javax.swing.*;
 
 public class MeetingFriendsScrollPaneView extends MeetingFriendsScrollPaneTemplate {
     public MeetingFriendsScrollPaneView() {

@@ -1,8 +1,7 @@
 package org.example.Panels.Meetings.MeetingPanel;
 
-import org.example.Panels.Meetings.MeetingFriendsScrollPane.MeetingFriendsScrollPaneView;
-
 import javax.swing.*;
+import org.example.Panels.Meetings.MeetingFriendsScrollPane.MeetingFriendsScrollPaneView;
 
 public abstract class MeetingPanelTemplate extends JPanel {
     protected MeetingPanelController controller;
@@ -14,5 +13,4 @@ public abstract class MeetingPanelTemplate extends JPanel {
     protected JLabel meetingDateInfoLabel;
     protected JLabel meetingTimeInfoLabel;
     protected MeetingFriendsScrollPaneView meetingFriendsScrollPaneView;
-
 }

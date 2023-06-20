@@ -7,16 +7,14 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Date;
-
+import java.util.List;
+import javax.imageio.ImageIO;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import org.apache.commons.compress.utils.IOUtils;
 import org.example.Models.*;
 import org.openstreetmap.gui.jmapviewer.Coordinate;
-
-import javax.imageio.ImageIO;
 
 @Getter
 public class DBConnection {
@@ -168,14 +166,14 @@ public class DBConnection {
                     resultSet.getDate("date").toLocalDate(),
                     resultSet.getTime("time").toLocalTime());
             meeting.setIsFinished(resultSet.getBoolean("finished"));
-            for (Friend friend: meeting.getAttendingFriends()) {
+            for (Friend friend : meeting.getAttendingFriends()) {
                 if (friend.getImageURLPath() != null) {
                     friend.setProfilePicture(ImageIO.read(new URL(friend.getImageURLPath())));
                 } else {
                     friend.setProfilePicture(ImageIO.read(new File(friend.getDefaultImagePath())));
                 }
             }
-            if(meeting.getMeetingDate().isBefore(LocalDate.now())) {
+            if (meeting.getMeetingDate().isBefore(LocalDate.now())) {
                 meeting.setIsFinished(true);
             }
             meetings.add(meeting);
@@ -198,9 +196,11 @@ public class DBConnection {
 
         int newID = lastRowId + 1;
 
-        String query = "INSERT INTO meetings (idmeetings, attendingfriends, location, date, time, finished) VALUES (?, ?, ?, ?, ?, ?)";
+        String query =
+                "INSERT INTO meetings (idmeetings, attendingfriends, location, date, time, finished) VALUES (?, ?, ?, ?, ?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-        Date date = Date.from(meeting.getMeetingDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
+        Date date = Date.from(
+                meeting.getMeetingDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
 
         System.out.println("Friends in DB: " + meeting.getAttendingFriends());
 
