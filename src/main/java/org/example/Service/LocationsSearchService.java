@@ -6,17 +6,27 @@ import com.google.common.net.UrlEscapers;
 import java.net.URL;
 import java.util.Collections;
 import java.util.List;
+import java.util.Properties;
 import java.util.stream.StreamSupport;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.example.Models.Controllers;
 import org.example.Models.LocationSearch;
 
-@RequiredArgsConstructor
 public class LocationsSearchService {
-    private static final String SEARCH_URL = "https://nominatim.openstreetmap.org/search?q=";
-    private static final String FORMAT = "&format=json";
+    private final String SEARCH_URL;
+    private final String FORMAT;
 
     private final ObjectMapper objectMapper;
+
+    @SneakyThrows
+    public LocationsSearchService(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
+        Properties properties = new Properties();
+        properties.load(getClass().getClassLoader().getResourceAsStream("config.properties"));
+        SEARCH_URL = properties.getProperty("API_URL_SEARCH");
+        FORMAT = "&format=json";
+    }
 
     @SneakyThrows
     public List<LocationSearch> getLocationsFromApi(String location, int limit) {

@@ -8,16 +8,26 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.example.Models.Controllers;
 import org.example.Models.LocationReverse;
 
-@RequiredArgsConstructor
 public class LocationsReverseService {
-
-    private static final String REVERSE_URL = "https://nominatim.openstreetmap.org/reverse?";
-    private static final String FORMAT = "&format=json";
-    private static final String ZOOM = "&zoom=";
+    private final String REVERSE_URL;
+    private final String FORMAT;
+    private final String ZOOM;
 
     private final ObjectMapper objectMapper;
+
+    @SneakyThrows
+    public LocationsReverseService(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
+        Properties properties = new Properties();
+        properties.load(getClass().getClassLoader().getResourceAsStream("config.properties"));
+        REVERSE_URL = properties.getProperty("API_URL_REVERSE");
+        FORMAT = "&format=json";
+        ZOOM = "&zoom=";
+
+    }
 
     @SneakyThrows
     public LocationReverse getLocationFromCoordinates(String lat, String lon, String zoom) {

@@ -3,7 +3,9 @@ package org.example.Frame.MainFrame;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
+
 import lombok.Getter;
+import lombok.SneakyThrows;
 import org.example.Models.Controllers;
 import org.example.Models.OSMMap;
 import org.example.Service.DBConnection;
@@ -17,6 +19,7 @@ public class MainFrameController {
     LocationsReverseService locationsReverseService;
     LocationsSearchService locationsSearchService;
 
+    @SneakyThrows
     public MainFrameController(MainFrameView view) {
         this.view = view;
 

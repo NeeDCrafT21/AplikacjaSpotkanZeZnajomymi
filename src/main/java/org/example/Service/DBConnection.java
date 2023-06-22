@@ -9,6 +9,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 import javax.imageio.ImageIO;
 import lombok.Getter;
 import lombok.SneakyThrows;
@@ -22,9 +23,11 @@ public class DBConnection {
 
     @SneakyThrows
     public DBConnection() {
-        String URL = "jdbc:mysql://localhost:3306/edp";
-        String USERNAME = "root";
-        String PASSWORD = "root";
+        Properties properties = new Properties();
+        properties.load(getClass().getClassLoader().getResourceAsStream("config.properties"));
+        String URL = properties.getProperty("DATABASE_URL");
+        String USERNAME = properties.getProperty("USERNAME");
+        String PASSWORD = properties.getProperty("PASSWORD");
         connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
     }
 
